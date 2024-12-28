@@ -46,4 +46,8 @@ export class UserService {
 
     return userResponse;
   }
+
+  async deleteUser(cpfcnpj: number): Promise<User[]> {
+    return this.userRepository.deleteUser();
+  }
 }

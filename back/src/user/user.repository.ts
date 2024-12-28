@@ -24,4 +24,10 @@ export class UserRepository {
       where: { cpf_cnpj },
     });
   }
+
+  async deleteUser(cpfcnpj: number): Promise<User> {
+    return this.prisma.user.delete({
+      where: {cpfcnpj}
+    });
+  }
 }
