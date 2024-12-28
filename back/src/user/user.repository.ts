@@ -65,4 +65,10 @@ export class UserRepository {
       include: { telephone: true },
     });
   }
+
+  async deleteUser(cpfcnpj: number): Promise<User> {
+    return this.prisma.user.delete({
+      where: {cpfcnpj}
+    });
+  }
 }
