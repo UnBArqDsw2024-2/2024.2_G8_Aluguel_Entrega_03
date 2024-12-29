@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #ff9e42;
+  --color-secondary: #37e1fd;
+
+  // Advanced colors
+  --advanced-light-orange: #fbb764;
+  --advanced-normal-orange: #ff993d;
+  --advanced-dark-orange: #f58035;
+  --advanced-light-blue: #54effe;
+  --advanced-normal-blue: #38ddfd;
+  --advanced-dark-blue: #0c86b7;
+
+  // Background colors
+  --background-seashell: #fff6ec;
+  --background-sky: #f4f7fe;
+  --background-solo: #f5f6f6;
+  --background-carpet: #f9f9f9;
+
+  // Neutral colors
+  --neutral-black: #272b33;
+  --neutral-darkest: #3b414d;
+  --neutral-dark: #4e5666;
+  --neutral-cloudy: #67738b;
+  --neutral-cleanest: #9caccc;
+  --neutral-light: #f9f9f9;
+  --neutral-lightest: #f4f6f8;
+  --neutral-soft: #e2e6ed;
+  --neutral-clean: #d0d3d9;
+  --neutral-snow: #ffffff;
+
+  // Support colors
+  --success-support: #1de8b5;
+  --attention-support: #ffc76d;
+  --error-support: #ff6b57;
+  --info-support: #6893f8;
+}
