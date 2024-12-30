@@ -1,12 +1,17 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { UserRepository } from './user.repository';
-import { CreateUserDto } from './dto/create-user.dto';
-import { ValidationService } from './validation/validation.service';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { UserFactory } from './user.factory';
-import { CPFValidation } from './validation/cpf.validation';
-import { CNPJValidation } from './validation/cnpj.validation';
+import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
+import { UserFactory } from './user.factory';
+import { UserRepository } from './user.repository';
+import { CNPJValidation } from './validation/cnpj.validation';
+import { CPFValidation } from './validation/cpf.validation';
+import { ValidationService } from './validation/validation.service';
 
 @Injectable()
 export class UserService {
@@ -42,6 +47,31 @@ export class UserService {
       cpf_cnpj: createdUser.cpf_cnpj,
       email: createdUser.email,
       site: createdUser.site,
+    };
+
+    return userResponse;
+  }
+
+  async updateUser(
+    cpf_cnpj: string,
+    data: UpdateUserDto,
+  ): Promise<UserResponseDto> {
+    const user = await this.userRepository.findByCpfCnpj(cpf_cnpj);
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado.');
+    }
+
+    if (data.password) {
+      data.password = await bcrypt.hash(data.password, 10);
+    }
+
+    const updatedUser = await this.userRepository.updateUser(cpf_cnpj, data);
+
+    const userResponse: UserResponseDto = {
+      name: updatedUser.name,
+      cpf_cnpj: updatedUser.cpf_cnpj,
+      email: updatedUser.email,
+      site: updatedUser.site,
     };
 
     return userResponse;
