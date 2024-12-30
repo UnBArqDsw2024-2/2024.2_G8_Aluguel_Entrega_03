@@ -1,18 +1,27 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createUser(email: string, name?: string): Promise<User> {
+  async createUser(data: CreateUserDto): Promise<User> {
     return this.prisma.user.create({
-      data: { email, name },
+      data: {
+        ...data,
+        telephone: {
+          create: data.telephone,
+        },
+      },
+      include: { telephone: true },
     });
   }
 
-  async findAllUsers(): Promise<User[]> {
-    return this.prisma.user.findMany();
+  async findByCpfCnpj(cpf_cnpj: string): Promise<User | null> {
+    return this.prisma.user.findUnique({
+      where: { cpf_cnpj },
+    });
   }
 }

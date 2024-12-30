@@ -10,17 +10,26 @@ datasource db {
 }
 
 model User {
-    id    Int     @id @default(autoincrement())
-    email String  @unique
-    name  String?
-    posts Post[]
+    cpf_cnpj  String      @id @unique
+    password  String
+    name      String
+    email     String      @unique
+    site      String?
+    telephone Telephone[]
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    title     String
-    content   String?
-    published Boolean? @default(false)
-    author    User?    @relation(fields: [authorId], references: [id])
-    authorId  Int?
+model Telephone {
+    number String @id @unique
+    userId String
+
+    user User @relation(fields: [userId], references: [cpf_cnpj])
 }
+
+// model Post {
+//     id        Int      @id @default(autoincrement())
+//     title     String
+//     content   String?
+//     published Boolean? @default(false)
+//     author    User?    @relation(fields: [authorId], references: [id])
+//     authorId  Int?
+// }
