@@ -21,13 +21,19 @@ export class UserRepository {
 
   async findByCpfCnpj(cpf_cnpj: string): Promise<User | null> {
     return this.prisma.user.findUnique({
-      where: { cpf_cnpj },
+      where: { cpf_cnpj: cpf_cnpj },
     });
   }
 
-  async deleteUser(cpfcnpj: number): Promise<User> {
-    return this.prisma.user.delete({
-      where: {cpfcnpj}
+  async deleteUser(cpf_cnpj: string): Promise<string> {
+    // await this.prisma.telephone.deleteMany({
+    //   where: { userId: cpf_cnpj },
+    // });
+
+    const deletedUser = this.prisma.user.delete({
+      where: { cpf_cnpj: cpf_cnpj },
     });
+
+    return (await deletedUser).cpf_cnpj;
   }
 }
