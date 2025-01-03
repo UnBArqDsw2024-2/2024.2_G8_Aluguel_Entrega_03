@@ -84,7 +84,7 @@ export class UserService {
     return userResponse;
   }
 
-  async deleteUser(cpfcnpj: number): Promise<User[]> {
-    return this.userRepository.deleteUser();
+  async deleteUser(cpfcnpj: string): Promise<string> {
+    return this.userRepository.deleteUser(cpfcnpj);
   }
 }

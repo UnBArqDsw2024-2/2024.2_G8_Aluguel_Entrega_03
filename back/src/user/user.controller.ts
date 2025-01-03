@@ -25,7 +25,7 @@ export class UserController {
   }
 
   @Delete()
-  async deleteUser(@Body('cpfcnpj') cpfcnpj: number): Promise<User> {
-    return this.userService.deleteUser(cpfcnpj);
+  async deleteUser(@Body('cpf_cnpj') cpf_cnpj: string): Promise<string> {
+    return this.userService.deleteUser(cpf_cnpj);
   }
 }
