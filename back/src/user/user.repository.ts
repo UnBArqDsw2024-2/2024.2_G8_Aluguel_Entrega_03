@@ -3,7 +3,7 @@ import { User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateUserBuilder } from './dto/update-user.builder';
 import { CPFValidationStrategy } from './strategies/cpf-validation.strategy';
-import { TelephoneNormalizationStrategy } from './strategies/telephone-normalization.strategy';
+import { TelephoneAdapter } from './adapters/telephone.adapter';
 import { UpdateStrategy } from './strategies/update-strategy.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -45,11 +45,10 @@ export class UserRepository {
       .setTelephones(data.telephone)
       .build();
 
-    // 3. Strategy: Normalização de Telefones
-    const telephoneNormalization = new TelephoneNormalizationStrategy();
-    const normalizedTelephones = userData.telephone
-      ? telephoneNormalization.execute(userData.telephone)
-      : undefined;
+    // 3. Adapter: Normalização de Telefones
+    const adaptedTelephones = userData.telephone
+    ? TelephoneAdapter.adapt(userData.telephone)
+    : undefined;
 
     // Atualização no banco de dados
     return this.prisma.user.update({
@@ -59,9 +58,9 @@ export class UserRepository {
         email: userData.email,
         password: userData.password,
         site: userData.site,
-        telephone: normalizedTelephones
+        telephone: adaptedTelephones
           ? {
-              upsert: normalizedTelephones.map((tel) => ({
+              upsert: adaptedTelephones.map((tel) => ({
                 where: { number: tel.number },
                 create: { number: tel.number },
                 update: { number: tel.number },
