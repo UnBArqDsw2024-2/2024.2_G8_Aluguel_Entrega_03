@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaServiceFactory } from './factories/prisma-service.factory';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
@@ -27,7 +28,10 @@ export class UserRepository {
   }
 
   async updateUser(cpf_cnpj: string, data: UpdateUserDto): Promise<User> {
-    return this.prisma.user.update({
+    const prismaFactory = new PrismaServiceFactory();
+    const prisma = prismaFactory.create();
+
+    return prisma.user.update({
       where: { cpf_cnpj },
       data: {
         name: data.name,
