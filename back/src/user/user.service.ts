@@ -6,7 +6,10 @@ import {
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserResponseDto } from './dto/user-response.dto';
+import {
+  UserResponseDto,
+  UserResponseDtoBuilder,
+} from './dto/user-response.dto';
 import { UserFactory } from './user.factory';
 import { UserRepository } from './user.repository';
 import { CNPJValidation } from './validation/cnpj.validation';
@@ -42,12 +45,14 @@ export class UserService {
 
     const createdUser = await this.userRepository.createUser(user);
 
-    const userResponse: UserResponseDto = {
-      name: createdUser.name,
-      cpf_cnpj: createdUser.cpf_cnpj,
-      email: createdUser.email,
-      site: createdUser.site,
-    };
+    const builder = new UserResponseDtoBuilder();
+
+    const userResponse = builder
+      .setName(createdUser.name)
+      .setCpfCnpj(createdUser.cpf_cnpj)
+      .setEmail(createdUser.email)
+      .setSite(createdUser.site)
+      .build();
 
     return userResponse;
   }
@@ -67,12 +72,14 @@ export class UserService {
 
     const updatedUser = await this.userRepository.updateUser(cpf_cnpj, data);
 
-    const userResponse: UserResponseDto = {
-      name: updatedUser.name,
-      cpf_cnpj: updatedUser.cpf_cnpj,
-      email: updatedUser.email,
-      site: updatedUser.site,
-    };
+    const builder = new UserResponseDtoBuilder();
+
+    const userResponse = builder
+      .setName(updatedUser.name)
+      .setCpfCnpj(updatedUser.cpf_cnpj)
+      .setEmail(updatedUser.email)
+      .setSite(updatedUser.site)
+      .build();
 
     return userResponse;
   }

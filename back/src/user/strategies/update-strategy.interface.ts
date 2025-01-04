@@ -1,4 +1,3 @@
 export interface UpdateStrategy {
-    execute(data: any): any;
-  }
-  
+  execute(data: any): any;
+}
