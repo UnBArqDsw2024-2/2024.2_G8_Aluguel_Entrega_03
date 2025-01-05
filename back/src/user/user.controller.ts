@@ -1,5 +1,4 @@
 import { Body, Controller, Param, Post, Put, Delete } from '@nestjs/common';
-import { User } from '@prisma/client';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
@@ -25,7 +24,9 @@ export class UserController {
   }
 
   @Delete()
-  async deleteUser(@Body('cpf_cnpj') cpf_cnpj: string): Promise<string> {
+  async deleteUser(
+    @Body('cpf_cnpj') cpf_cnpj: string,
+  ): Promise<UserResponseDto> {
     return this.userService.deleteUser(cpf_cnpj);
   }
 }

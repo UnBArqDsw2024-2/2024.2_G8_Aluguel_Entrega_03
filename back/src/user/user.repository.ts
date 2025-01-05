@@ -66,15 +66,15 @@ export class UserRepository {
     });
   }
 
-  async deleteUser(cpf_cnpj: string): Promise<string> {
-    // await this.prisma.telephone.deleteMany({
-    //   where: { userId: cpf_cnpj },
-    // });
+  async deleteUser(cpf_cnpj: string): Promise<User> {
+    await this.prisma.telephone.deleteMany({
+      where: { userId: cpf_cnpj },
+    });
 
     const deletedUser = this.prisma.user.delete({
       where: { cpf_cnpj: cpf_cnpj },
     });
 
-    return (await deletedUser).cpf_cnpj;
+    return await deletedUser;
   }
 }
