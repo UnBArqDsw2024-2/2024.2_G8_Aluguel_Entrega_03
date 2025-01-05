@@ -12,7 +12,7 @@ import { JwtModule } from '@nestjs/jwt';
 @Module({
   controllers: [AuthController],
   imports: [JwtModule.register({
-    secret: 'SECRET_KEY', // Sua chave secreta
+    secret: 'asdsadkjnaskdjaskdnasdkjn123', // Sua chave secreta
     signOptions: { expiresIn: '1h' }, // Tempo de expiração do token (1 hora, por exemplo)
   })],
   providers: [

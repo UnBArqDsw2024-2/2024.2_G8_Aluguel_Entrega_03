@@ -4,7 +4,7 @@ import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class TokenManager {
-  private readonly secret = 'your_secret_key'; // Substitua pela chave real
+  private readonly secret = 'asdasdasd123123'; // Substitua pela chave real
 
   generateToken(payload: any): string {
     return jwt.sign(payload, this.secret, { expiresIn: '1h' });

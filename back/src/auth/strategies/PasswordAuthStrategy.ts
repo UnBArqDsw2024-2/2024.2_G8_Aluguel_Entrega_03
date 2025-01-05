@@ -1,18 +1,20 @@
-// src/auth/strategies/PasswordAuthStrategy.ts
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from 'src/user/user.repository';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class PasswordAuthStrategy {
   constructor(private readonly userRepository: UserRepository) {}
 
   async authenticate(email: string, password: string): Promise<any> {
-    // Aqui você deve buscar o usuário, não apenas verificar se as credenciais são válidas
     const user = await this.userRepository.findByEmail(email);
-    if (!user || user.password !== password) {
-      return null; // Ou retorne false
+
+    if (!user) {
+      return null; // Usuário não encontrado
     }
-    return user; // Retorna o usuário
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    return isPasswordValid ? user : null; // Retorna o usuário se a senha for válida
   }
 }
-
