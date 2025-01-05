@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
-import { AdResponseDtoBuilder } from './dto/property-response.dto';
+import { PropertyResponseDtoBuilder } from './dto/property-response.dto';
 import { PropertyRepository } from './property.repository';
 
 @Injectable()
@@ -18,11 +18,11 @@ export class PropertyService {
   async create(dto: CreatePropertyDto) {
     const property = await this.repository.createProperty(dto);
 
-    const builder = new AdResponseDtoBuilder();
+    const builder = new PropertyResponseDtoBuilder();
     const response = builder
       .withId(1)
       .withDescription(property.description)
-      .withPrice(property.price)
+      .withCpfCnpj(property.userCpfCnpj)
       .withCreatedAt(new Date())
       .build();
 

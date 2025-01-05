@@ -9,4 +9,4 @@ import { PropertyService } from './property.service';
   controllers: [PropertyController],
   exports: [PropertyService],
 })
-export class AdsModule {}
+export class PropertyModule {}

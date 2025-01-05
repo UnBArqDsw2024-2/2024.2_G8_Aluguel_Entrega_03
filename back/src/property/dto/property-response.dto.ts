@@ -1,12 +1,11 @@
 export class PropertyResponseDto {
   id: number;
-  title: string;
+  cpfCnpj: string;
   description: string;
-  price: number;
   createdAt: Date;
 }
 
-export class AdResponseDtoBuilder {
+export class PropertyResponseDtoBuilder {
   private response: PropertyResponseDto;
 
   constructor() {
@@ -18,13 +17,13 @@ export class AdResponseDtoBuilder {
     return this;
   }
 
-  withDescription(description: string) {
-    this.response.description = description;
+  withCpfCnpj(cpfCnpj: string) {
+    this.response.cpfCnpj = cpfCnpj;
     return this;
   }
 
-  withPrice(price: number) {
-    this.response.price = price;
+  withDescription(description: string) {
+    this.response.description = description;
     return this;
   }
 
