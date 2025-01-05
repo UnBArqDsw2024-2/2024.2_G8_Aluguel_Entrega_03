@@ -16,6 +16,8 @@ model User {
     email     String      @unique
     site      String?
     telephone Telephone[]
+    reset_password_token   String?
+    reset_password_expires DateTime?
 }
 
 model Telephone {
