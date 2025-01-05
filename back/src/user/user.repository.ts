@@ -24,6 +24,10 @@ export class UserRepository {
     });
   }
 
+  async findByEmail(email: string): Promise<User | null> {
+    return this.prisma.user.findUnique({ where: { email } });
+  }
+  
   async findByCpfCnpj(cpf_cnpj: string): Promise<User | null> {
     try {
       const user = await this.prisma.user.findUnique({
