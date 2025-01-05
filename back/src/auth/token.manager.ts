@@ -1,10 +1,9 @@
-// src/auth/tokenManager.ts
 import { Injectable } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class TokenManager {
-  private readonly secret = 'asdasdasd123123'; // Substitua pela chave real
+  private readonly secret = 'asdasdasd123123'; 
 
   generateToken(payload: any): string {
     return jwt.sign(payload, this.secret, { expiresIn: '1h' });

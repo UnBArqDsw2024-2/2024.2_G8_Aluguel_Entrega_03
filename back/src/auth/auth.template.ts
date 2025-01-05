@@ -1,4 +1,3 @@
-// src/auth/AuthTemplate.ts
 export abstract class AuthTemplate {
     login(email: string, password: string): string {
       this.validate(email, password);

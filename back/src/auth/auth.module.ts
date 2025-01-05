@@ -1,28 +1,27 @@
-// src/auth/auth.module.ts
 import { Module } from '@nestjs/common';
 import { AuthController } from './auth.controller';
-import { PasswordAuth } from './PasswordAuth';
-import { PasswordAuthStrategy } from './strategies/PasswordAuthStrategy';
+import { PasswordAuthStrategy } from './strategies/password.auth.strategy';
 import { UserRepository } from 'src/user/user.repository';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { TokenManager } from './tokenManager'; // Certifique-se de que está importado corretamente
+import { TokenManager } from './token.manager'; 
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
+import { PasswordAuth } from './password.auth';
 
 @Module({
   controllers: [AuthController],
   imports: [JwtModule.register({
-    secret: 'asdsadkjnaskdjaskdnasdkjn123', // Sua chave secreta
-    signOptions: { expiresIn: '1h' }, // Tempo de expiração do token (1 hora, por exemplo)
+    secret: 'asdsadkjnaskdjaskdnasdkjn123', 
+    signOptions: { expiresIn: '1h' }, 
   })],
   providers: [
     PasswordAuth,
     PasswordAuthStrategy,
-    TokenManager, // Adicionado como provider
+    TokenManager, 
     UserRepository,
     PrismaService,
     AuthService,
   ],
-  exports: [TokenManager], // Opcional, se for usado em outros módulos
+  exports: [TokenManager], 
 })
 export class AuthModule {}

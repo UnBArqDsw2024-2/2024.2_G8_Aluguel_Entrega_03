@@ -10,11 +10,11 @@ export class PasswordAuthStrategy {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
-      return null; // Usuário não encontrado
+      return null; 
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    return isPasswordValid ? user : null; // Retorna o usuário se a senha for válida
+    return isPasswordValid ? user : null; 
   }
 }
