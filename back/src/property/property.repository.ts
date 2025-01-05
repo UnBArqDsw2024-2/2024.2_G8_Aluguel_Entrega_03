@@ -1,4 +1,6 @@
-import { Injectable } from '@nestjs/common';
+// src/property/property.repository.ts
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { Property } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePropertyDto } from './dto/create-property.dto';
 
@@ -6,7 +8,17 @@ import { CreatePropertyDto } from './dto/create-property.dto';
 export class PropertyRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createProperty(data: CreatePropertyDto) {
+  async createProperty(data: CreatePropertyDto): Promise<Property> {
+    const userExists = await this.prisma.user.findUnique({
+      where: { cpf_cnpj: data.userCpfCnpj },
+    });
+    if (!userExists) {
+      throw new NotFoundException(
+        `Usuário com CPF/CNPJ '${data.userCpfCnpj}' não encontrado.`,
+      );
+    }
+
+    // Cria o imóvel
     return this.prisma.property.create({
       data: {
         adType: data.adType,
@@ -19,13 +31,11 @@ export class PropertyRepository {
         parkingSpaces: data.parkingSpaces,
         propertyType: data.propertyType,
         numberOfBathrooms: data.numberOfBathrooms,
-
-        // Relaciona com o usuário
+        // Relaciona automaticamente ao usuário
         user: {
           connect: { cpf_cnpj: data.userCpfCnpj },
         },
-
-        // Opcional: criar Address ao mesmo tempo
+        // Cria endereço, se vier no DTO
         address: data.address
           ? {
               create: {
@@ -40,8 +50,7 @@ export class PropertyRepository {
           : undefined,
       },
       include: {
-        user: true,
-        address: true,
+        address: true, // para retornar o address junto
       },
     });
   }

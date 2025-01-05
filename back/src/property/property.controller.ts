@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
+import { PropertyResponseDto } from './dto/property-response.dto';
 import { PropertyService } from './property.service';
 
 @Controller('property')
@@ -17,7 +18,7 @@ export class PropertyController {
   }
 
   @Post()
-  async create(@Body() dto: CreatePropertyDto) {
+  async create(@Body() dto: CreatePropertyDto): Promise<PropertyResponseDto> {
     return this.propertyService.create(dto);
   }
 }
