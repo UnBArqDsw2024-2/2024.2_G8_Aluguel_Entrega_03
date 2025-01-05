@@ -3,7 +3,7 @@ import * as argon2 from 'argon2';
 
 export class Argon2PasswordHasher implements IPasswordHasher {
   async hash(password: string): Promise<string> {
-    const salt = Buffer.from('somesalt'); // mas com pelo menos 16 bytes
+    const salt = Buffer.from('somesalt');
     return argon2.hash(password, { salt });
   }
 

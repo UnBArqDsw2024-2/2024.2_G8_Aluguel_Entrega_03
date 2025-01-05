@@ -19,14 +19,12 @@ export class PasswordResetFacade {
   constructor(private readonly userRepository: UserRepository) {}
 
   /**
-   * Envia o e-mail de reset para o usuário,
    * gerando e salvando o token no banco.
    */
-  public async sendResetLink(email: string): Promise<void> {
+  public async sendResetLink(email: string): Promise<string> {
     // 1) Verifica se usuário existe
     const user = await this.userRepository.findByEmail(email);
     if (!user) {
-      // Em produção, muitas vezes retornamos 200 com msg genérica ("Se existir, enviaremos email...")
       throw new Error('Usuário não encontrado');
     }
 
@@ -38,17 +36,17 @@ export class PasswordResetFacade {
 
     const token = tokenGenerator.generateToken();
 
-    // 3) Define data de expiração (ex: 1h a partir de agora)
+    // 3) Define data de expiração
     const expiresAt = new Date();
     expiresAt.setHours(expiresAt.getHours() + 1);
 
     // 4) Salva o token e expiração no banco
     await this.userRepository.updateResetToken(user.cpf_cnpj, token, expiresAt);
 
-    // 5) Simula o envio do e-mail com o token ou link
     const resetLink = `http://localhost:4200/reset-password?token=${token}`;
     console.log(`\n[SIMULAÇÃO] Enviar "e-mail" para ${user.email}:`);
     console.log(`Link de redefinição de senha: ${resetLink}\n`);
+    return resetLink;
   }
 
   /**

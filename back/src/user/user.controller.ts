@@ -38,9 +38,9 @@ export class UserController {
   @Post('forgot-password')
   async forgotPassword(@Body() body: { email: string }, @Res() res) {
     try {
-      await this.passwordResetFacade.sendResetLink(body.email);
+      const link = await this.passwordResetFacade.sendResetLink(body.email);
       return res.status(HttpStatus.OK).json({
-        message: 'Se este e-mail existir, o link foi simulado no console.',
+        message: link,
       });
     } catch (error: any) {
       return res
