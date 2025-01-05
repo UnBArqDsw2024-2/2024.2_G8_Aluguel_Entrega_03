@@ -1,20 +1,20 @@
+// src/auth/tokenManager.ts
+import { Injectable } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 
+@Injectable()
 export class TokenManager {
-  public static instance: TokenManager;
+  private readonly secret = 'your_secret_key'; // Substitua pela chave real
 
-  public constructor() {}
-
-  static getInstance(): TokenManager {
-    if (!TokenManager.instance) {
-      TokenManager.instance = new TokenManager();
-    }
-    return TokenManager.instance;
+  generateToken(payload: any): string {
+    return jwt.sign(payload, this.secret, { expiresIn: '1h' });
   }
 
-  generateToken(email: string): string {
-    // A chave secreta deve ser segura e armazenada de forma protegida
-    const secretKey = 'your-secret-key';
-    return jwt.sign({ email }, secretKey, { expiresIn: '1h' });
+  verifyToken(token: string): any {
+    try {
+      return jwt.verify(token, this.secret);
+    } catch (error) {
+      throw new Error('Invalid token');
+    }
   }
 }
