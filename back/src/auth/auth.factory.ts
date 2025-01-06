@@ -8,9 +8,9 @@ import { PasswordAuth } from './password.auth';
 export class AuthFactory {
   static createAuthMethod(type: string, userRepository: UserRepository) {
     if (type === 'password') {
-      const strategy = new PasswordAuthStrategy(userRepository);  
-      const tokenManager = new TokenManager(); 
-      return new PasswordAuth(strategy, tokenManager);  
+      const strategy = new PasswordAuthStrategy(userRepository);
+      const tokenManager = new TokenManager();
+      return new PasswordAuth(strategy, tokenManager);
     }
 
     throw new Error('Método de autenticação não suportado');
