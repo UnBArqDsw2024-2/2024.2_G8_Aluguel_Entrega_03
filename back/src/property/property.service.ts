@@ -1,6 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
-import { PropertyResponseDtoBuilder } from './dto/property-response.dto';
+import {
+  PropertyResponseDtoBuilder,
+  PropertyUpdateStatusDto,
+} from './dto/property-response.dto';
 import { PropertyRepository } from './property.repository';
 
 @Injectable()
@@ -22,7 +25,7 @@ export class PropertyService {
     const property = await this.repository.findPropertyById(id);
 
     if (!property) {
-      throw new NotFoundException(Propriedade com ID ${id} não encontrada.);
+      throw new NotFoundException('Propriedade com ID ${id} não encontrada.');
     }
 
     await this.repository.updatePropertyStatus(id, status);
