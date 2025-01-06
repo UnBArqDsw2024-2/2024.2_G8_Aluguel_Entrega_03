@@ -37,4 +37,9 @@ export class PropertyController {
   ) {
     return this.propertyService.updateProperty(id, data);
   }
+
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.propertyService.deleteProperty(id);
+  }
 }

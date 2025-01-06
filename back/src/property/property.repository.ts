@@ -81,15 +81,15 @@ export class PropertyRepository {
         },
         address: data.address
           ? {
-              update: {
-                neighborhood: data.address.neighborhood,
-                number: data.address.number,
-                street: data.address.street,
-                city: data.address.city,
-                state: data.address.state,
-                postalCode: data.address.postalCode,
-              },
-            }
+            update: {
+              neighborhood: data.address.neighborhood,
+              number: data.address.number,
+              street: data.address.street,
+              city: data.address.city,
+              state: data.address.state,
+              postalCode: data.address.postalCode,
+            },
+          }
           : undefined,
       },
       include: {
@@ -97,4 +97,17 @@ export class PropertyRepository {
       },
     });
   }
+  async deleteById(id: number): Promise<void> {
+    // Exclui uma propriedade pelo ID
+    await this.prisma.property.delete({
+      where: { id },
+    });
+  }
+  async deleteAddressById(id: number): Promise<void> {
+    // Exclui um endereço pelo ID
+    await this.prisma.address.delete({
+      where: { id },
+    });
+  }
+
 }

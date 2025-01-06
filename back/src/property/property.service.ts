@@ -4,6 +4,8 @@ import { PropertyResponseDtoBuilder, PropertyUpdateStatusDto } from './dto/prope
 import { PropertyRepository } from './property.repository';
 import { UpdatePropertyCommand } from './commands/update-property.command';
 import { PropertyPrototype } from './prototype/property.prototype';
+import { PropertyLeaf } from './composites/property-leaf';
+import { PropertyComposite } from './composites/property-composite';
 
 @Injectable()
 export class PropertyService {
@@ -58,5 +60,24 @@ export class PropertyService {
     Object.assign(clonedProperty, data);
   
     return this.repository.updateProperty(id, clonedProperty);
+  }
+
+  async deleteProperty(id: number): Promise<{ message: string }> {
+    const property = await this.repository.findPropertyById(id);
+    if (!property) {
+      throw new NotFoundException(`Propriedade com ID ${id} não encontrada.`);
+    }
+  
+    const composite = new PropertyComposite();
+
+    composite.add(new PropertyLeaf(id, this.repository));
+  
+    if (property.address) {
+      composite.add(new PropertyLeaf(property.address.id, this.repository));
+    }
+  
+    await composite.delete();
+  
+    return { message: `Propriedade com ID ${id} excluída com sucesso.` };
   }
 }
