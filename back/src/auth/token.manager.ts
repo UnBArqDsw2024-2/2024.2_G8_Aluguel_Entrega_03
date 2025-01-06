@@ -3,7 +3,7 @@ import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class TokenManager {
-  private readonly secret = 'asdasdasd123123'; 
+  private readonly secret = 'asdasdasd123123';
 
   generateToken(payload: any): string {
     return jwt.sign(payload, this.secret, { expiresIn: '1h' });
