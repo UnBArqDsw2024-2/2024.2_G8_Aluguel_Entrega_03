@@ -1,10 +1,19 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
 import {
   PropertyResponseDto,
   PropertyUpdateStatusDto,
 } from './dto/property-response.dto';
 import { PropertyService } from './property.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('property')
 export class PropertyController {
@@ -21,11 +30,13 @@ export class PropertyController {
   }
 
   @Post()
+  @UseGuards(JwtAuthGuard)
   async create(@Body() dto: CreatePropertyDto): Promise<PropertyResponseDto> {
     return this.propertyService.create(dto);
   }
 
   @Put(':id/status')
+  @UseGuards(JwtAuthGuard)
   async updateStatus(
     @Param('id') id: number,
     @Body('status') status: string,

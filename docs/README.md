@@ -20,9 +20,20 @@ Demais diretrizes constam no Moodle.
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-
+| 200062620  |  Pedro Augusto Dourado Izarias |
+| 202023663  |  Gabriel Basto Bertolazi |
+| 202063201  |  Ester Flores Lino da Silva |
+| 180098080  |  Arthur Carneiro Trindade  |
+| 200054333  |  Arthur Gabriel Lima Gomes  |
+| 211061350  |  Alexande de Santana Beck  |
+| 200015753  |  Caio Berg Carlos Leite  |
+| 190028475  |  Gabriela Tiago de Araujo  |
+| 190087501  |  Gabriel Marcolino Rodrigues  |
+| 211029540  |  Pedro Sena Barbosa Holtz Yen  |
+| 190091720 |  Lucas Macedo Barboza |
+| 202023968 |  Miguel Moreira da Silva de Oliveira |
+| 190134810 |  Shaine Aparecida Cardoso de Oliveira |
+| 200028154 |  Thiago Ribeiro Freitas |
 ## Sobre 
 Contextualize, usando referências, links, e outros materiais como fontes.
 
