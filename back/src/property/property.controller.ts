@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
-import { PropertyResponseDto } from './dto/property-response.dto';
+import { PropertyResponseDto, PropertyUpdateStatusDto } from './dto/property-response.dto';
 import { PropertyService } from './property.service';
 
 @Controller('property')
 export class PropertyController {
-  constructor(private readonly propertyService: PropertyService) {}
+  constructor(private readonly propertyService: PropertyService) { }
 
   @Get()
   async findAll() {
@@ -28,5 +28,13 @@ export class PropertyController {
     @Body('status') status: string,
   ): Promise<PropertyUpdateStatusDto> {
     return this.propertyService.updateStatus(Number(id), status);
+  }
+
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() data: CreatePropertyDto,
+  ) {
+    return this.propertyService.updateProperty(id, data);
   }
 }

@@ -3,10 +3,11 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Property } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePropertyDto } from './dto/create-property.dto';
+import { PropertyPrototype } from './prototype/property.prototype';
 
 @Injectable()
 export class PropertyRepository {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
 
   async createProperty(data: CreatePropertyDto): Promise<Property> {
     const userExists = await this.prisma.user.findUnique({
@@ -39,15 +40,15 @@ export class PropertyRepository {
         // Cria endereço, se vier no DTO
         address: data.address
           ? {
-              create: {
-                neighborhood: data.address.neighborhood,
-                number: data.address.number,
-                street: data.address.street,
-                city: data.address.city,
-                state: data.address.state,
-                postalCode: data.address.postalCode,
-              },
-            }
+            create: {
+              neighborhood: data.address.neighborhood,
+              number: data.address.number,
+              street: data.address.street,
+              city: data.address.city,
+              state: data.address.state,
+              postalCode: data.address.postalCode,
+            },
+          }
           : undefined,
       },
       include: {
@@ -60,11 +61,40 @@ export class PropertyRepository {
       where: { id },
     });
   }
-
-  async updatePropertyStatus(id: number, status: string): Promise<Property> {
+  async updateProperty(id: number, data: Partial<PropertyPrototype>): Promise<Property> {
     return this.prisma.property.update({
       where: { id },
-      data: { status },
+      data: {
+        adType: data.adType,
+        condoFee: data.condoFee,
+        description: data.description,
+        propertyTax: data.propertyTax,
+        available: data.available,
+        numberOfBedrooms: data.numberOfBedrooms,
+        price: data.price,
+        parkingSpaces: data.parkingSpaces,
+        propertyType: data.propertyType,
+        numberOfBathrooms: data.numberOfBathrooms,
+        status: data.status,
+        user: {
+          connect: { cpf_cnpj: data.userCpfCnpj },
+        },
+        address: data.address
+          ? {
+              update: {
+                neighborhood: data.address.neighborhood,
+                number: data.address.number,
+                street: data.address.street,
+                city: data.address.city,
+                state: data.address.state,
+                postalCode: data.address.postalCode,
+              },
+            }
+          : undefined,
+      },
+      include: {
+        address: true,
+      },
     });
   }
 }
