@@ -11,10 +11,10 @@ Demais diretrizes constam no Moodle.
  
  (Apague esses comentários)
 
-# Nome do Projeto
+# HostHub
 
 **Código da Disciplina**: FGA0208<br>
-**Número do Grupo**: XX<br>
+**Número do Grupo**: 08<br>
 **Entrega**: 03<br>
 
 ## Alunos
