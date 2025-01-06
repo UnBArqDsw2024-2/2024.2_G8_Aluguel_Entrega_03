@@ -30,7 +30,8 @@ model Telephone {
     number String @id @unique
     userId String
 
-    user User @relation(fields: [userId], references: [cpf_cnpj])
+//  user User @relation(fields: [userId], references: [cpf_cnpj])
+    user User @relation(fields: [userId], references: [cpf_cnpj], onDelete: Cascade)
 }
 
 
