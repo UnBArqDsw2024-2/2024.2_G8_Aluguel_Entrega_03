@@ -1,15 +1,15 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
-import {
-  PropertyResponseDtoBuilder,
-  PropertyUpdateStatusDto,
-} from './dto/property-response.dto';
+import { PropertyResponseDtoBuilder, PropertyUpdateStatusDto } from './dto/property-response.dto';
 import { PropertyRepository } from './property.repository';
 import { FindOneProperty } from './find-properties/find-one';
+import { PropertyPrototype } from './prototype/property.prototype';
+import { PropertyLeaf } from './composites/property-leaf';
+import { PropertyComposite } from './composites/property-composite';
 
 @Injectable()
 export class PropertyService {
-  constructor(private readonly repository: PropertyRepository) {}
+  constructor(private readonly repository: PropertyRepository) { }
 
   async findAll() {
     return 'This action returns all ads';
@@ -27,7 +27,7 @@ export class PropertyService {
     const property = await this.repository.findPropertyById(id);
 
     if (!property) {
-      throw new NotFoundException('Propriedade com ID ${id} não encontrada.');
+      throw new NotFoundException(`Propriedade com ID ${id} não encontrada.`);
     }
 
     await this.repository.updatePropertyStatus(id, status);
@@ -47,5 +47,38 @@ export class PropertyService {
       .build();
 
     return response;
+  }
+
+  async updateProperty(id: number, data: CreatePropertyDto) {
+    const property = await this.repository.findPropertyById(id);
+    if (!property) {
+      throw new NotFoundException(`Propriedade com ID ${id} não encontrada.`);
+    }
+  
+    const propertyPrototype = Object.assign(new PropertyPrototype(), property);
+    const clonedProperty = propertyPrototype.clone();
+  
+    Object.assign(clonedProperty, data);
+  
+    return this.repository.updateProperty(id, clonedProperty);
+  }
+
+  async deleteProperty(id: number): Promise<{ message: string }> {
+    const property = await this.repository.findPropertyById(id);
+    if (!property) {
+      throw new NotFoundException(`Propriedade com ID ${id} não encontrada.`);
+    }
+  
+    const composite = new PropertyComposite();
+
+    composite.add(new PropertyLeaf(id, this.repository));
+  
+    if (property.addressPk) {
+      composite.add(new PropertyLeaf(property.addressPk, this.repository));
+    }
+  
+    await composite.delete();
+  
+    return { message: `Propriedade com ID ${id} excluída com sucesso.` };
   }
 }
