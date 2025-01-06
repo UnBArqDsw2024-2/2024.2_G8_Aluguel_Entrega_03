@@ -5,6 +5,7 @@ import {
   PropertyUpdateStatusDto,
 } from './dto/property-response.dto';
 import { PropertyRepository } from './property.repository';
+import { FindOneProperty } from './find-properties/find-one';
 
 @Injectable()
 export class PropertyService {
@@ -14,8 +15,9 @@ export class PropertyService {
     return 'This action returns all ads';
   }
 
-  async findOne(id: string) {
-    return `This action returns a #${id} ad`;
+  async findOne(id: number) {
+    const finder = new FindOneProperty(this.repository);
+    return finder.getObject(id);
   }
 
   async updateStatus(
