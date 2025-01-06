@@ -6,21 +6,93 @@ generator client {
 datasource db {
     provider  = "postgresql"
     url       = env("POSTGRES_PRISMA_URL")
-    directUrl = env("POSTGRES_URL_NON_POOLING")
+    //directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
+// ----------------------
+// USUÁRIO
+// ----------------------
 model User {
-    id    Int     @id @default(autoincrement())
-    email String  @unique
-    name  String?
-    posts Post[]
+    cpf_cnpj  String      @id @unique
+    password  String
+    name      String
+    email     String      @unique
+    site      String?
+    telephone Telephone[]
+    Property  Property[]
+    Review    Review[]
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    title     String
-    content   String?
-    published Boolean? @default(false)
-    author    User?    @relation(fields: [authorId], references: [id])
-    authorId  Int?
+// ----------------------
+// CONTATO (telefone)
+// ----------------------
+model Telephone {
+    number String @id @unique
+    userId String
+
+//  user User @relation(fields: [userId], references: [cpf_cnpj])
+    user User @relation(fields: [userId], references: [cpf_cnpj], onDelete: Cascade)
+}
+
+
+// ----------------------
+// PROPERTY
+// ----------------------
+model Property {
+    id                Int       @id @default(autoincrement())
+    adType            String?
+    condoFee          Float?
+    description       String?
+    propertyTax       Float? // IPTU
+    available         Boolean?  @default(true)
+    numberOfBedrooms  Int?
+    price             Float?
+    creationDate      DateTime? @default(now())
+    parkingSpaces     Int?
+    propertyType      String? // e.g., house, apartment
+    numberOfBathrooms Int?
+    status            String?  @default("OFFILNE")
+
+    // Foreign Keys
+    userCpfCnpj String?
+    addressPk   Int?    @unique
+
+    // Relationships
+    user    User?    @relation(fields: [userCpfCnpj], references: [cpf_cnpj])
+    address Address? @relation(fields: [addressPk], references: [addressPk])
+    reviews Review[]
+}
+
+// ----------------------
+// ADDRESS
+// ----------------------
+model Address {
+    addressPk    Int     @id @default(autoincrement())
+    neighborhood String?
+    number       String?
+    street       String?
+    city         String?
+    state        String?
+    postalCode   String?
+
+    // Relationship with Property (0:1)
+    property Property?
+}
+
+// ----------------------
+// REVIEW
+// ----------------------
+model Review {
+    userCpfCnpj String
+    propertyId  Int
+
+    rating  Int?
+    comment String?
+
+    // Relationships
+    user     User     @relation(fields: [userCpfCnpj], references: [cpf_cnpj])
+    property Property @relation(fields: [propertyId], references: [id])
+
+    // Composite primary key
+    @@id([userCpfCnpj, propertyId])
 }

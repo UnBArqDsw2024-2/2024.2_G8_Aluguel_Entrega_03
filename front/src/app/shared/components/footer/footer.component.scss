@@ -1,0 +1,92 @@
+.app-footer {
+  background-color: #000000;
+  color: #f1f1f1;
+  padding: 4rem;
+  font-size: 0.9rem;
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap; // Para se adaptar a telas menores
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+
+    .footer-left {
+      flex: 1;
+
+      .footer-logo {
+        margin-bottom: 0.75rem;
+
+        img {
+          // Ajuste o tamanho conforme necessário:
+          max-height: 50px;
+          width: auto;
+        }
+      }
+
+      h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        margin: 0.25rem 0;
+      }
+    }
+
+    .footer-right {
+      flex: 1;
+
+      .social-media {
+        margin-bottom: 1rem;
+
+        h4 {
+          margin-bottom: 0.5rem;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+
+          li {
+            margin: 0.3rem 0;
+
+            a {
+              color: #f1f1f1;
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+
+        a {
+          color: #f1f1f1;
+          text-decoration: none;
+          margin: 0.25rem 0;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    text-align: center;
+    border-top: 1px solid #555;
+    padding-top: 1rem;
+
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
+  }
+}
