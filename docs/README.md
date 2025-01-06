@@ -11,7 +11,7 @@ Demais diretrizes constam no Moodle.
  
  (Apague esses comentários)
 
-# Aluguel
+# HostHub
 
 **Código da Disciplina**: FGA0208<br>
 **Número do Grupo**: 08<br>
