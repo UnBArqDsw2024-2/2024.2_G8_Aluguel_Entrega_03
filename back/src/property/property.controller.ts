@@ -21,4 +21,12 @@ export class PropertyController {
   async create(@Body() dto: CreatePropertyDto): Promise<PropertyResponseDto> {
     return this.propertyService.create(dto);
   }
+
+  @Put(':id/status')
+  async updateStatus(
+    @Param('id') id: number,
+    @Body('status') status: string,
+  ): Promise<PropertyUpdateStatusDto> {
+    return this.propertyService.updateStatus(Number(id), status);
+  }
 }

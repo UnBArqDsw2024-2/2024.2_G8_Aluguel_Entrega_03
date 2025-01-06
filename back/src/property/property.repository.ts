@@ -31,6 +31,7 @@ export class PropertyRepository {
         parkingSpaces: data.parkingSpaces,
         propertyType: data.propertyType,
         numberOfBathrooms: data.numberOfBathrooms,
+        status: data.status || 'offline',
         // Relaciona automaticamente ao usuário
         user: {
           connect: { cpf_cnpj: data.userCpfCnpj },
@@ -52,6 +53,18 @@ export class PropertyRepository {
       include: {
         address: true, // para retornar o address junto
       },
+    });
+  }
+  async findPropertyById(id: number): Promise<Property> {
+    return this.prisma.property.findUnique({
+      where: { id },
+    });
+  }
+
+  async updatePropertyStatus(id: number, status: string): Promise<Property> {
+    return this.prisma.property.update({
+      where: { id },
+      data: { status },
     });
   }
 }

@@ -36,3 +36,8 @@ export class PropertyResponseDtoBuilder {
     return this.response;
   }
 }
+
+export class PropertyUpdateStatusDto {
+  id: number;
+  status: string;
+}

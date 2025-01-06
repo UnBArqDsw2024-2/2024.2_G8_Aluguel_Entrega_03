@@ -1,6 +1,7 @@
 import { Type } from 'class-transformer';
 import {
   IsBoolean,
+  IsEnum,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -37,6 +38,12 @@ export class AddressDto {
   @IsOptional()
   @IsString()
   postalCode?: string;
+}
+
+enum Status {
+  PUBLISHED = 'PUBLISHED',
+  OFFLINE = 'OFFLINE',
+  PAUSED = 'PAUSED',
 }
 
 export class CreatePropertyDto {
@@ -87,6 +94,9 @@ export class CreatePropertyDto {
   @IsNotEmpty()
   @IsString()
   userCpfCnpj?: string;
+
+  @IsEnum(Status, { message: 'Status inválido' })
+  status?: Status;
 
   // Relacionamento aninhado com Address
   @IsOptional()
