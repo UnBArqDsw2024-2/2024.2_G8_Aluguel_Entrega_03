@@ -3,10 +3,13 @@ import { SharedComponents } from '../../../../shared/shared.components';
 import { FormPrototype } from '../../../../shared/models/form-prototype.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../../../core/services/api.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  imports: [SharedComponents, FormsModule, CommonModule],
+  imports: [SharedComponents, FormsModule, CommonModule, HttpClientModule],
+  providers: [ApiService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   standalone: true,
@@ -16,12 +19,14 @@ export class RegisterComponent {
   successMessage: string | null = null
   errorMessage: string  | null = null
 
-  constructor() {
+  constructor(private apiService: ApiService) {
     this.registerForm = new FormPrototype (
       {
         name: '',
+        cpf_cnpj: '',
         email: '',
         password: '',
+        site: '',
         confirmPassword: '',
       }
     );
@@ -63,8 +68,10 @@ export class RegisterComponent {
   initializeForm(): void {
     this.registerForm = new FormPrototype({
       name: '',
+      cpf_cnpj: '',
       email: '',
       password: '',
+      site: '',
       confirmPassword: '',
     });
     this.successMessage = null;
@@ -74,9 +81,16 @@ export class RegisterComponent {
   onSubmit(): void {
     if (this.validateForm()) {
 
-      this.initializeForm();
-
       this.successMessage = 'Cadastro realizado com sucesso!'
+
+      this.apiService.post('users', this.registerForm).subscribe(
+        (response) => {
+          console.log(response)
+        },
+        (error) => {
+          console.error(error)
+        }
+      );
 
       setTimeout(() => {
         this.successMessage = null;

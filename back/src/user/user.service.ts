@@ -38,8 +38,17 @@ export class UserService {
 
     const encryptedPassword = await bcrypt.hash(data.password, 10);
 
+    const telephones = data.telephone || [];
+
+    const telephoneEntities = telephones.map((telephone) => {
+      telephone.number = data.telephone[0].number;
+      telephone.userId = data.cpf_cnpj;
+      return telephone;
+    });
+
     const user = UserFactory.createUser({
       ...data,
+      telephone: telephoneEntities,
       password: encryptedPassword,
     });
 

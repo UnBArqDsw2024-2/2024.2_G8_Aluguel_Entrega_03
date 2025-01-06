@@ -1,8 +1,32 @@
+import { Address, Review, User } from '@prisma/client';
+
 export class PropertyResponseDto {
   id: number;
   cpfCnpj: string;
   description: string;
   createdAt: Date;
+}
+
+export interface PropertyDetailsDto {
+  adType?: string;
+  condoFee?: number;
+  description?: string;
+  propertyTax?: number;
+  available?: boolean;
+  numberOfBedrooms?: number;
+  price?: number;
+  creationDate?: Date;
+  parkingSpaces?: number;
+  propertyType?: string;
+  numberOfBathrooms?: number;
+  status?: string;
+
+  userCpfCnpj?: string;
+  addressPk?: number;
+
+  user?: User;
+  address?: Address;
+  reviews?: Review[];
 }
 
 export class PropertyResponseDtoBuilder {
