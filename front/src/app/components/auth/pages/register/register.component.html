@@ -9,14 +9,25 @@
         Crie sua conta
       </p>
 
+      <!-- Mensagem de sucesso -->
+      <p *ngIf="successMessage" class="text-center text-green-600 font-bold mb-3">
+        {{ successMessage }}
+      </p>
+
+      <!-- Mensagem de erro -->
+      <p *ngIf="errorMessage" class="text-center text-red-600 font-bold mb-3">
+        {{ errorMessage }}
+      </p>
+
       <!-- Formulário -->
-      <form>
+      <form (ngSubmit) = "onSubmit()" #formDirective="ngForm">
         <!-- Input de Nome -->
         <div class="w-full max-w-sm min-w-[200px] mb-5">
           <div class="relative">
             <input
               id="name"
               name="name"
+              [(ngModel)]="registerForm.name"
               type="name"
               class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 transition duration-300 ease hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
               placeholder="Nome completo "
@@ -36,6 +47,7 @@
             <input
               id="email"
               name="email"
+              [(ngModel)]="registerForm.email"
               type="email"
               class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 transition duration-300 ease hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
               placeholder="E-mail"
@@ -57,6 +69,7 @@
               id="password"
               name="password"
               type="password"
+              [(ngModel)]="registerForm.password"
               class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 transition duration-300 ease hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
               placeholder=" "
               required
@@ -76,7 +89,8 @@
             <input
               id="confirm-password"
               name="confirm-password"
-              type="confirm-password"
+              type="password"
+              [(ngModel)]="registerForm.confirmPassword"
               class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 transition duration-300 ease hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
               placeholder=" "
               required
@@ -85,7 +99,7 @@
               for="confirm-password"
               class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-slate-400 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-5"
             >
-              Senha
+              Confirmar senha
             </label>
           </div>
         </div>
