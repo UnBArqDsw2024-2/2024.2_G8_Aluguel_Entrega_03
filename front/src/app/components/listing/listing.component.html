@@ -12,47 +12,43 @@
     <fieldset>
       <legend>Dados do Imóvel</legend>
 
-      <div class="form-group">
-        <label for="tipoImovel">Selecione o tipo de Imóvel</label>
-        <select id="tipoImovel" formControlName="tipoImovel" required>
-          <option value="">Selecione</option>
-          <option value="Casa">Casa</option>
-          <option value="Apartamento">Apartamento</option>
-          <option value="Comercial">Comercial</option>
-          <!-- Adicione outras opções conforme necessário -->
-        </select>
-      </div>
+      <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2 w-full md:w-1/2">
+            <label for="tipoImovel">Selecione o tipo de Imóvel</label>
+            <select id="tipoImovel" formControlName="tipoImovel" class="h-full" required>
+              <option value="">Selecione</option>
+              <option value="Casa">Casa</option>
+              <option value="Apartamento">Apartamento</option>
+              <option value="Comercial">Comercial</option>
+              <!-- Adicione outras opções conforme necessário -->
+            </select>
+          </div>
 
-      <div class="form-group">
-        <label for="quantidadeQuartos">N° de Quartos</label>
-        <input 
-          type="number" 
-          id="quantidadeQuartos" 
-          formControlName="quantidadeQuartos" 
-          required
-        />
+          <div class="form-group w-full md:w-1/2 w-full md:w-1/2">
+            <label for="quantidadeQuartos">N° de Quartos</label>
+            <input 
+              type="number" 
+              id="quantidadeQuartos" 
+              formControlName="quantidadeQuartos" 
+              required
+            />
+          </div>
       </div>
-
-      <div class="form-group">
-        <label for="quantidadeBanheiros">N° de Banheiros</label>
-        <input 
-          type="number" 
-          id="quantidadeBanheiros" 
-          formControlName="quantidadeBanheiros" 
-          required
-        />
+      
+      <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2">
+            <label for="quantidadeBanheiros">N° de Banheiros</label>
+            <input type="number" id="quantidadeBanheiros" formControlName="quantidadeBanheiros" required />
+          </div>
+          
+          <div class="form-group w-full md:w-1/2">
+            <label for="vagasGaragem">N° de vagas de Garagem</label>
+            <input type="number" id="vagasGaragem" formControlName="vagasGaragem" />
+          </div>
       </div>
+      
 
-      <div class="form-group">
-        <label for="vagasGaragem">N° de vagas de Garagem</label>
-        <input 
-          type="number" 
-          id="vagasGaragem" 
-          formControlName="vagasGaragem"
-        />
-      </div>
-
-      <div class="form-group">
+      <div class="form-group w-full md:w-1/2">
         <label for="imagens">Adicionar Imagens</label>
         <div 
           class="upload-area" 
@@ -87,44 +83,53 @@
     <!-- DADOS DO ENDEREÇO -->
     <fieldset>
       <legend>Dados do Endereço</legend>
+      <div class="flex flex-col md:flex-row gap-2">
 
-      <div class="form-group">
-        <label for="cep">CEP</label>
-        <input type="text" id="cep" 
-        formControlName="cep" required
-        mask="000000-000"
-        class="input-cep" />
+        <div class="form-group w-full md:w-1/2">
+          <label for="cep">CEP</label>
+          <input type="text" id="cep" 
+          formControlName="cep" required
+          mask="000000-000"
+          class="input-cep" />
+        </div>
+        
+        
+        <div class="form-group w-full md:w-1/2">
+          <label for="rua">Endereço</label>
+          <input type="text" id="rua" formControlName="rua" required />
+        </div>
+      </div>
+        
+      <div class="flex flex-col md:flex-row gap-2">
+        <div class="form-group w-full md:w-1/2">
+          <label for="bairro">Bairro</label>
+          <input type="text" id="bairro" formControlName="bairro" required />
+        </div>
+
+        
+        <div class="form-group w-full md:w-1/2">
+          <label for="numero">Número</label>
+          <input type="text" id="numero" formControlName="numero" required />
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="rua">Endereço</label>
-        <input type="text" id="rua" formControlName="rua" required />
+      <div class="flex flex-col md:flex-row gap-2">
+        <div class="form-group w-full md:w-1/2">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" formControlName="cidade" required />
+        </div>
+
+        <div class="form-group w-full md:w-1/2">
+          <label for="estado">Estado</label>
+          <input type="text" id="estado" formControlName="estado" required />
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="bairro">Bairro</label>
-        <input type="text" id="bairro" formControlName="bairro" required />
-      </div>
-
-      <div class="form-group">
-        <label for="numero">Número</label>
-        <input type="text" id="numero" formControlName="numero" required />
-      </div>
-
-      <div class="form-group">
-        <label for="cidade">Cidade</label>
-        <input type="text" id="cidade" formControlName="cidade" required />
-      </div>
-
-      <div class="form-group">
-        <label for="estado">Estado</label>
-        <input type="text" id="estado" formControlName="estado" required />
-      </div>
-
-      <div class="form-group">
+      <div class="form-group w-full">
         <label for="logradouro">Logradouro (complemento)</label>
         <input type="text" id="logradouro" formControlName="logradouro" />
       </div>
+      
     </fieldset>
 
     <div class="form-separator"></div>
@@ -132,44 +137,49 @@
     <!-- DADOS DO ANÚNCIO -->
     <fieldset>
       <legend>Dados do Anúncio</legend>
+      <div class="flex flex-col md:flex-row gap-2">
 
-      <div class="form-group">
-        <label for="titulo">Título do Anúncio</label>
-        <input type="text" id="titulo" formControlName="titulo" required />
+        <div class="form-group w-full md:w-1/2">
+          <label for="titulo">Título do Anúncio</label>
+          <input type="text" id="titulo" formControlName="titulo" required />
+        </div>
+        
+        <div class="form-group w-full md:w-1/2">
+          <label for="tipoAnuncio">Selecione o Tipo de Anúncio</label>
+          <select id="tipoAnuncio" formControlName="tipoAnuncio" class="h-full" required>
+            <option value="">Selecione</option>
+            <option value="Aluguel">Aluguel</option>
+            <option value="Venda">Venda</option>
+          </select>
+        </div>
       </div>
+      
+      <div class="flex flex-col md:flex-row gap-2">
 
-      <div class="form-group">
-        <label for="tipoAnuncio">Selecione o Tipo de Anúncio</label>
-        <select id="tipoAnuncio" formControlName="tipoAnuncio" required>
-          <option value="">Selecione</option>
-          <option value="Aluguel">Aluguel</option>
-          <option value="Venda">Venda</option>
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label for="valorAluguel">Valor de Aluguel</label>
-        <input 
+        <div class="form-group w-full md:w-1/2">
+          <label for="valorAluguel">Valor de Aluguel</label>
+          <input 
           type="text" 
           id="valorAluguel" 
           formControlName="valorAluguel" 
           mask="separator.2" 
           prefix="R$ "
-        />
-      </div>
-
-      <div class="form-group">
-        <label for="valorCondominio">Valor de Condomínio</label>
-        <input 
+          />
+        </div>
+        
+        <div class="form-group w-full md:w-1/2">
+          <label for="valorCondominio">Valor de Condomínio</label>
+          <input 
           type="text" 
           id="valorCondominio" 
           formControlName="valorCondominio" 
           mask="separator.2"
           prefix="R$ "
-        />
+          />
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group w-full md:w-1/2">
         <label for="valorIPTU">Valor do IPTU</label>
         <input 
           type="text" 
@@ -178,6 +188,11 @@
           mask="separator.2" 
           prefix="R$ "
         />
+      </div>
+
+      <div class="form-group w-full">
+        <label for="valorIPTU">Descrição do Anúncio</label>
+        <textarea type="text" id="description" formControlName="description" class="min-h-[6em] max-h-[8em]"></textarea>
       </div>
     </fieldset>
 
