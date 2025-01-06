@@ -3,7 +3,6 @@ import { CreatePropertyDto } from './dto/create-property.dto';
 import { PropertyResponseDtoBuilder, PropertyUpdateStatusDto } from './dto/property-response.dto';
 import { PropertyRepository } from './property.repository';
 import { FindOneProperty } from './find-properties/find-one';
-import { UpdatePropertyCommand } from './commands/update-property.command';
 import { PropertyPrototype } from './prototype/property.prototype';
 import { PropertyLeaf } from './composites/property-leaf';
 import { PropertyComposite } from './composites/property-composite';
@@ -74,8 +73,8 @@ export class PropertyService {
 
     composite.add(new PropertyLeaf(id, this.repository));
   
-    if (property.address) {
-      composite.add(new PropertyLeaf(property.address.id, this.repository));
+    if (property.addressPk) {
+      composite.add(new PropertyLeaf(property.addressPk, this.repository));
     }
   
     await composite.delete();

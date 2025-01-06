@@ -58,12 +58,12 @@ export class PropertyRepository {
   }
   async findPropertyById(id: number): Promise<Property> {
     return this.prisma.property.findUnique({
-      where: { id },
+      where: { addressPk: id },
     });
   }
   async updateProperty(id: number, data: Partial<PropertyPrototype>): Promise<Property> {
     return this.prisma.property.update({
-      where: { id },
+      where: { addressPk: id },
       data: {
         adType: data.adType,
         condoFee: data.condoFee,
@@ -100,14 +100,19 @@ export class PropertyRepository {
   async deleteById(id: number): Promise<void> {
     // Exclui uma propriedade pelo ID
     await this.prisma.property.delete({
-      where: { id },
+      where: { addressPk: id },
     });
   }
   async deleteAddressById(id: number): Promise<void> {
     // Exclui um endereço pelo ID
     await this.prisma.address.delete({
-      where: { id },
+      where: { addressPk: id },
     });
   }
-
+  async updatePropertyStatus(id: number, status: string): Promise<Property> {
+    return this.prisma.property.update({
+      where: { addressPk: id },
+      data: { status },
+    });
+  }
 }

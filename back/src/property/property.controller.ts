@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put, Delete } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
 import { PropertyResponseDto, PropertyUpdateStatusDto } from './dto/property-response.dto';
 import { PropertyService } from './property.service';
