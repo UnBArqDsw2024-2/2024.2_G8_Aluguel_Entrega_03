@@ -1,0 +1,23 @@
+<div class="search-filters">
+  <input type="text" placeholder="Realize a busca" class="search-bar" />
+  <div class="filters">
+    <select [(ngModel)]="selectedLocation">
+      <option value="">Local</option>
+      <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+    </select>
+    <select [(ngModel)]="selectedPropertyType">
+      <option value="">Tipo de imóvel</option>
+      <option *ngFor="let type of propertyTypes" [value]="type">{{ type }}</option>
+    </select>
+    <label for="priceRange">Faixa de Preço (R$):</label>
+    <div class="price-info">
+      <span>R$ 0</span>
+      <input id="priceRange" type="range" min="0" max="100000" [(ngModel)]="priceRange" />
+      <span>R$ {{ priceRange | number }}</span>
+    </div>
+    <label>
+      <input type="checkbox" [(ngModel)]="isForSale" />
+      Deseja comprar o imóvel?
+    </label>
+  </div>
+</div>
