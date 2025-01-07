@@ -28,6 +28,7 @@ export class ForgotPasswordComponent {
   showMessage = false;
   message = '';
   errorMessage = '';
+  sucessMessage = '';
 
   constructor(
     private fb: FormBuilder,
