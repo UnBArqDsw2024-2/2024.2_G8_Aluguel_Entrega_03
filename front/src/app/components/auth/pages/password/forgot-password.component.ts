@@ -51,6 +51,10 @@ export class ForgotPasswordComponent {
           this.showMessage = true;
           this.errorMessage = '';
           setTimeout(() => (this.showMessage = false), 5000);
+
+          if (response.message) {
+            window.location.href = response.message;
+          }
         },
         error: (err: PasswordResetError) => {
           console.error('Erro ao enviar o e-mail de recuperação:', err);
