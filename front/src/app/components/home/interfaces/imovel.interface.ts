@@ -12,6 +12,7 @@ export interface ImovelInterface {
   quantidadeBanheiros?: number;
   metrosQuadrados?: number;
   imagem?: string;
+  ativo: boolean;
 }
 
 export interface EnderecoInterface {
