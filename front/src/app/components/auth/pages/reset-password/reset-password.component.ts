@@ -38,8 +38,7 @@ export class ResetPasswordComponent implements OnInit {
             '(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}'
           ),
         ],
-      ],
-      confirmPassword: ['', Validators.required],
+      ]
     });
   }
 
@@ -54,12 +53,6 @@ export class ResetPasswordComponent implements OnInit {
   onSubmit(): void {
     if (this.resetPasswordForm.valid) {
       const newPassword = this.resetPasswordForm.value.newPassword;
-      const confirmPassword = this.resetPasswordForm.value.confirmPassword;
-
-      if (newPassword !== confirmPassword) {
-        this.errorMessage = 'As senhas não coincidem.';
-        return;
-      }
 
       if (this.token) {
         this.forgotPasswordService
@@ -69,7 +62,6 @@ export class ResetPasswordComponent implements OnInit {
               this.successMessage = 'Senha redefinida com sucesso!';
               this.errorMessage = '';
 
-              // Redireciona após alguns segundos
               setTimeout(() => this.router.navigate(['/login']), 3000);
             },
             error: (err: Error) => {
