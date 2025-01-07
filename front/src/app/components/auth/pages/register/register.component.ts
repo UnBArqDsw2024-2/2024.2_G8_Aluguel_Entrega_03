@@ -4,11 +4,10 @@ import { FormPrototype } from '../../../../shared/models/form-prototype.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../../core/services/api.service';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
-  imports: [SharedComponents, FormsModule, CommonModule, HttpClientModule],
+  imports: [SharedComponents, FormsModule, CommonModule],
   providers: [ApiService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
