@@ -1,59 +1,138 @@
-# 2024.2_G8_Aluguel_Entrega_03
-Esse repositório é para ser utilizado pelos grupos como um template inicial.
-As seções do Template NÃO DEVEM SER OMITIDAS, sendo TODAS RELEVANTES.
-Demais diretrizes constam no Moodle.
-
-**!! Atenção: Renomeie o seu repositório para (Ano.Semestre)_(Grupo)_(NomeDoProjeto)_(Entrega_03)*. !!** 
-
-**!! *Não coloque os nomes dos alunos no título do repositório*. !!**
-
-**!! *Exemplo de título correto: 2024.2_G1_Jogo_Entrega_03*. !!** 
- 
- (Apague esses comentários)
-
-# HostHub
+# <img src="PadroesDeProjeto/image/HostHub.png" alt="HostHub" width="60px" style="vertical-align: middle;"> HostHub
 
 **Código da Disciplina**: FGA0208<br>
 **Número do Grupo**: 08<br>
 **Entrega**: 03<br>
 
 ## Alunos
+
 |Matrícula | Aluno |
 | -- | -- |
-| 200062620  |  Pedro Augusto Dourado Izarias |
-| 202023663  |  Gabriel Basto Bertolazi |
-| 202063201  |  Ester Flores Lino da Silva |
-| 180098080  |  Arthur Carneiro Trindade  |
-| 200054333  |  Arthur Gabriel Lima Gomes  |
-| 211061350  |  Alexande de Santana Beck  |
-| 200015753  |  Caio Berg Carlos Leite  |
-| 190028475  |  Gabriela Tiago de Araujo  |
-| 190087501  |  Gabriel Marcolino Rodrigues  |
-| 211029540  |  Pedro Sena Barbosa Holtz Yen  |
-| 190091720 |  Lucas Macedo Barboza |
-| 202023968 |  Miguel Moreira da Silva de Oliveira |
-| 190134810 |  Shaine Aparecida Cardoso de Oliveira |
-| 200028154 |  Thiago Ribeiro Freitas |
+| 211061350  | Alexandre de Santana Beck           |
+| 180098080  | Arthur Carneiro Trindade            |
+| 200054333  | Arthur Gabriel Lima Gomes           |
+| 200015753  | Caio Berg Carlos Leite              |
+| 202063201  | Ester Flores Lino da Silva          |
+| 202023663  | Gabriel Basto Bertolazi             |
+| 190087501  | Gabriel Marcolino Rodrigues         |
+| 190028475  | Gabriela Tiago de Araujo            |
+| 190091720  | Lucas Macedo Barboza                |
+| 202023968  | Miguel Moreira da Silva de Oliveira |
+| 200062620  | Pedro Augusto Dourado Izarias       |
+| 211029540  | Pedro Sena Barbosa Holtz Yen        |
+| 190134810  | Shaine Aparecida Cardoso de Oliveira|
+| 200028154  | Thiago Ribeiro Freitas              |
+
 ## Sobre 
 
 O projeto **HostHub** é uma iniciativa do Grupo 8 da disciplina de Arquitetura e Desenho de Software da Universidade de Brasília (UnB). Este projeto visa desenvolver uma plataforma online para a divulgação de anúncios de imóveis, facilitando a conexão entre proprietários e potenciais locatários.
 
-O repositório do projeto está disponível no GitHub: . Nele, você encontrará a estrutura do projeto, incluindo diretórios para o back-end (`back`), front-end (`front`) e documentação (`docs`).
+O repositório do projeto está disponível no GitHub: [HostHub](https://github.com/UnBArqDsw2024-2/2024.2_G8_Aluguel_Entrega_03) . Nele, você encontrará a estrutura do projeto, incluindo diretórios para o back-end (`back`), front-end (`front`) e documentação (`docs`).
 
 A documentação do projeto é gerada utilizando o [Docsify](https://docsify.js.org/), uma ferramenta que permite a criação de sites de documentação dinâmicos a partir de arquivos Markdown.
 
-Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de contribuição, visite o repositório oficial: . 
+Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de contribuição, visite o repositório oficial: [Repoitório do HostHub](https://github.com/UnBArqDsw2024-2/2024.2_G8_Aluguel_Entrega_03)
 
 ## Screenshots da Terceira Entrega
-Adicione 2 ou mais screenshots em termos de artefatos realizados na entrega.
+
+### Tela de cadastrar anúncio
+![Tela de cadastrar anúncio](PadroesDeProjeto/image/front/cadastrar-anuncio.png)
+
+### Tela de cadastrar usuário
+![Tela de cadastrar usuário](PadroesDeProjeto/image/front/cadastro.png)
+
+### Tela de recuperar senha
+![Tela de recuperar senha](PadroesDeProjeto/image/front/esqueceu-senha.png)
+
+### Tela home
+![Tela home](PadroesDeProjeto/image/front/home.png)
+
+### Tela de login
+![Tela de login](PadroesDeProjeto/image/front/login.png)
 
 ## Há algo a ser executado?
 
-( ) SIM
+(X) SIM
 
 ( ) NÃO
 
-Se SIM, insira um manual (ou um script) para auxiliar ainda mais os interessados na execução.
+## Configurando o Ambiente
 
-## Informações Complementares 
-Quaisquer outras informações adicionais podem ser descritas nessa seção.
+Este projeto utiliza **PostgreSQL**, **Docker**, **TypeScript** e **Angular**. Abaixo estão as instruções detalhadas para configurar e rodar o ambiente de desenvolvimento e produção.
+
+---
+
+## **1. Configuração do Backend**
+
+### **Passo 1: Clonar o Repositório**
+
+```bash
+git clone <link do repositório>
+```
+
+### **Passo 2: Configurar o arquivo `.env`**
+
+Crie o arquivo `.env` na raiz do backend com as seguintes variáveis:
+
+```bash
+POSTGRES_PRISMA_URL="postgresql://nest_user:nest_password@localhost:5432/nest_database"
+POSTGRES_URL_NON_POOLING="postgresql://nest_user:nest_password@localhost:5432/nest_database"
+```
+
+### **Passo 3: Executar o Docker Compose**
+
+Inicie o banco de dados com Docker Compose:
+
+```bash
+docker compose up -d
+```
+
+### **Passo 4: Aplicar Migrations**
+
+Antes de rodar o projeto, aplique as migrations do Prisma com o comando:
+
+```bash
+npx prisma migrate dev
+```
+
+### **Passo 5: Rodar o Backend**
+
+Execute o seguinte comando para iniciar o servidor do backend:
+
+```bash
+npm run start:dev
+```
+
+---
+
+## **2. Configuração do Frontend**
+
+### **Passo 1: Instalar Dependências**
+
+Navegue até o diretório do frontend e instale as dependências:
+
+```bash
+npm install
+```
+
+### **Passo 2: Rodar o Servidor de Desenvolvimento**
+
+Para rodar o frontend localmente, execute o comando:
+
+```bash
+npm start
+```
+
+O projeto estará acessível no endereço padrão:
+
+```bash
+http://localhost:4200/
+```
+
+## Histórico de Versão
+
+| Versão |    Data    |         Descrição          |  Autor(es)  |
+| :----: | :--------: | :------------------------: | :---------: |
+| `1.0`  | 06/01/2025 | Criação do documento e adição dos participantes e sobre | [Pedro Izarias](https://github.com/Izarias) |
+| `1.1`  | 06/01/2025 | Incluído orientações sobre como configurar o ambiente | [Ester Lino](https://github.com/esteerlino) |
+| `1.2`  | 06/01/2025 | Adição das imagens do projeto | [Pedro Izarias](https://github.com/Izarias), [Pedro Sena](https://github.com/pedroyen21) |

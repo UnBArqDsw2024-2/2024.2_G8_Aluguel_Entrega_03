@@ -5,9 +5,9 @@ import { ProfileRoutes } from './components/profile/profile.routes';
 import { AnunciosRoutes } from './components/anuncios/anuncios.routes';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/anunciar', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   ...AuthRoutes,
   ...HomeRoutes,
   ...ProfileRoutes,
-  ...AnunciosRoutes
+  ...AnunciosRoutes,
 ];
