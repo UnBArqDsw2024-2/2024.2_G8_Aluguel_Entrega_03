@@ -1,4 +1,4 @@
-# <img src="PadroesDeProjeto/image/HostHub.png" alt="HostHub" width="60px" style="vertical-align: middle;"> HostHub
+# <img src="docs/PadroesDeProjeto/image/HostHub.png" alt="HostHub" width="60px" style="vertical-align: middle;"> HostHub
 
 **Código da Disciplina**: FGA0208<br>
 **Número do Grupo**: 08<br>
