@@ -35,19 +35,19 @@ Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de 
 
 ## Screenshots da Terceira Entrega
 
-## Tela de cadastrar anúncio
+### Tela de cadastrar anúncio
 ![Tela de cadastrar anúncio](PadroesDeProjeto/image/front/cadastrar-anuncio.png)
 
-## Tela de cadastrar usuário
+### Tela de cadastrar usuário
 ![Tela de cadastrar usuário](PadroesDeProjeto/image/front/cadastro.png)
 
-## Tela de recuperar senha
+### Tela de recuperar senha
 ![Tela de recuperar senha](PadroesDeProjeto/image/front/esqueceu-senha.png)
 
-## Tela home
+### Tela home
 ![Tela home](PadroesDeProjeto/image/front/home.png)
 
-## Tela de login
+### Tela de login
 ![Tela de login](PadroesDeProjeto/image/front/login.png)
 
 ## Há algo a ser executado?
