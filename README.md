@@ -45,7 +45,7 @@ Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de 
 ![Tela de recuperar senha](PadroesDeProjeto/image/front/esqueceu-senha.png)
 
 ### Tela home
-![Tela home](PadroesDeProjeto/image/front/home.png)
+![Tela home](docs/PadroesDeProjeto/image/front/home.png)
 
 ### Tela de login
 ![Tela de login](PadroesDeProjeto/image/front/login.png)
