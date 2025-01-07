@@ -1,0 +1,11 @@
+.logo {
+    display: flex; /* Usa flexbox para centralizar */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    margin-bottom: 20px; /* Adiciona espaço entre o logo e o restante */
+}
+
+.logo img {
+    max-width: 150px;
+    height: auto; /* Garante proporção adequada */
+}

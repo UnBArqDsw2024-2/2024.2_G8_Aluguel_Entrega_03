@@ -71,6 +71,39 @@ export class UserRepository {
     });
   }
 
+  async findByEmail(email: string) {
+    return this.prisma.user.findUnique({ where: { email } });
+  }
+
+  async findByResetToken(token: string) {
+    return this.prisma.user.findFirst({
+      where: { reset_password_token: token },
+    });
+  }
+
+  async updateResetToken(
+    userId: string,
+    token: string | null,
+    expires: Date | null,
+  ) {
+    return this.prisma.user.update({
+      where: { cpf_cnpj: userId },
+      data: {
+        reset_password_token: token,
+        reset_password_expires: expires,
+      },
+    });
+  }
+
+  async updatePassword(userId: string, hashedPassword: string) {
+    return this.prisma.user.update({
+      where: { cpf_cnpj: userId },
+      data: {
+        password: hashedPassword,
+      },
+    });
+  }
+
   @LogOnErrorUtil.create()
   async deleteUser(cpf_cnpj: string): Promise<User> {
     await this.prisma.telephone.deleteMany({

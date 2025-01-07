@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ApiService } from '../../../../core/services/api.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedComponents } from '../../../../shared/shared.components';
 
