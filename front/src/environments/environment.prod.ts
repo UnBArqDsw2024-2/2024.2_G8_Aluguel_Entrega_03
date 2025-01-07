@@ -3,5 +3,5 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  api: process.env['API_URL'],
+  api: 'https://back-arquitetura.vercel.app',
 };

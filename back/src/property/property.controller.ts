@@ -5,6 +5,7 @@ import {
   Param,
   Post,
   Put,
+  Delete,
   UseGuards,
 } from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
@@ -42,5 +43,15 @@ export class PropertyController {
     @Body('status') status: string,
   ): Promise<PropertyUpdateStatusDto> {
     return this.propertyService.updateStatus(Number(id), status);
+  }
+
+  @Put(':id')
+  async update(@Param('id') id: number, @Body() data: CreatePropertyDto) {
+    return this.propertyService.updateProperty(id, data);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: number) {
+    return this.propertyService.deleteProperty(id);
   }
 }
