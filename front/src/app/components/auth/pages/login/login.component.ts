@@ -8,10 +8,11 @@ import {
 import { ApiService } from '../../../../core/services/api.service';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedComponents } from '../../../../shared/shared.components';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule, HttpClientModule, SharedComponents],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   standalone: true,

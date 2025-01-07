@@ -3,20 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Property } from '../../models/property.model';
 import { PropertyFactory } from '../../../core/services/property.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-property-list',
   templateUrl: './property-list.component.html',
-  imports: [
-    CommonModule,
-    FormsModule
-  ],
-  styleUrls: ['./property-list.component.scss']
+  imports: [CommonModule, FormsModule],
+  styleUrls: ['./property-list.component.scss'],
 })
 export class PropertyListComponent {
   properties: Property[] = [];
 
-  constructor(private propertyFactory: PropertyFactory) {
+  constructor(
+    private propertyFactory: PropertyFactory,
+    private router: Router
+  ) {
     this.loadProperties();
   }
 
