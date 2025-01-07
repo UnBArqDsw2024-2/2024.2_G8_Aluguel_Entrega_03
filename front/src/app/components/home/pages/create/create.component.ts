@@ -1,29 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { HeaderComponent } from '../../../../shared/components/header/header.component';
+import { FooterComponent } from '../../../../shared/components/footer/footer.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-import { ApiService } from '../../core/services/api.service';
+import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../../../../core/services/api.service';
 
 @Component({
-  selector: 'app-listing',
-  templateUrl: './listing.component.html',
-  styleUrls: ['./listing.component.scss'],
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.scss'],
   imports: [
     ReactiveFormsModule,
     HeaderComponent,
     FooterComponent,
     NgxMaskDirective,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [provideNgxMask(), ApiService],
 })
-export class ListingComponent implements OnInit {
+export class CreateComponent implements OnInit {
   anuncioForm!: FormGroup;
   imagensSelecionadas: File[] = [];
 
-  constructor(private fb: FormBuilder, private apiService: ApiService) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     // Inicializando o FormGroup
@@ -37,13 +47,13 @@ export class ListingComponent implements OnInit {
 
       // Endereço
       address: this.fb.group({
-      postalCode: ['', Validators.required],
-      street: ['', Validators.required],
-      neighborhood: ['', Validators.required],
-      number: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      logradouro: ['']
+        postalCode: ['', Validators.required],
+        street: ['', Validators.required],
+        neighborhood: ['', Validators.required],
+        number: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        logradouro: [''],
       }),
 
       // Dados do Anúncio
