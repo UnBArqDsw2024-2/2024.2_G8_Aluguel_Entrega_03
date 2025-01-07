@@ -1,51 +1,68 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { HeaderComponent } from '../../../../shared/components/header/header.component';
+import { FooterComponent } from '../../../../shared/components/footer/footer.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../../../../core/services/api.service';
 
 @Component({
-  selector: 'app-listing',
-  templateUrl: './listing.component.html',
-  styleUrls: ['./listing.component.scss'],
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.scss'],
   imports: [
     ReactiveFormsModule,
     HeaderComponent,
     FooterComponent,
     NgxMaskDirective,
+    HttpClientModule,
   ],
-  providers: [provideNgxMask()],
+  providers: [provideNgxMask(), ApiService],
 })
-export class ListingComponent implements OnInit {
+export class CreateComponent implements OnInit {
   anuncioForm!: FormGroup;
   imagensSelecionadas: File[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private apiService: ApiService
+  ) {}
 
   ngOnInit(): void {
     // Inicializando o FormGroup
     this.anuncioForm = this.fb.group({
+      userCpfCnpj: ['123456789'],
       // Dados do Imóvel
-      tipoImovel: ['', Validators.required],
-      quantidadeQuartos: [null, Validators.required],
-      quantidadeBanheiros: [null, Validators.required],
-      vagasGaragem: [null],
+      propertyType: ['', Validators.required],
+      numberOfBedrooms: [null, Validators.required],
+      numberOfBathrooms: [null, Validators.required],
+      parkingSpaces: [null],
 
       // Endereço
-      cep: ['', Validators.required],
-      rua: ['', Validators.required],
-      bairro: ['', Validators.required],
-      numero: ['', Validators.required],
-      cidade: ['', Validators.required],
-      estado: ['', Validators.required],
-      logradouro: [''],
+      address: this.fb.group({
+        postalCode: ['', Validators.required],
+        street: ['', Validators.required],
+        neighborhood: ['', Validators.required],
+        number: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        logradouro: [''],
+      }),
 
       // Dados do Anúncio
       titulo: ['', Validators.required],
-      tipoAnuncio: ['', Validators.required],
-      valorAluguel: [null],
-      valorCondominio: [null],
-      valorIPTU: [null],
+      adType: ['', Validators.required],
+      price: [null],
+      condoFee: [null],
+      propertyTax: [null],
+      description: ['', Validators.required],
     });
   }
 
@@ -93,6 +110,7 @@ export class ListingComponent implements OnInit {
 
   // Método que envia o formulário
   onSubmit(): void {
+    console.log(this.anuncioForm);
     if (this.anuncioForm.valid) {
       // Aqui você pode enviar os dados para uma API, por exemplo
       const dadosAnuncio = this.anuncioForm.value;
@@ -101,9 +119,14 @@ export class ListingComponent implements OnInit {
       // As imagens selecionadas ficam em "this.imagensSelecionadas"
       console.log('Imagens:', this.imagensSelecionadas);
 
-      // Exemplo de requisição (usando um service fictício):
-      // this.meuService.cadastrarAnuncio(dadosAnuncio, this.imagensSelecionadas)
-      //   .subscribe(() => alert('Anúncio cadastrado com sucesso!'));
+      this.apiService.post('property', dadosAnuncio).subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
     } else {
       console.log('Formulário inválido, verifique os campos obrigatórios.');
     }

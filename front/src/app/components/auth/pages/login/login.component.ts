@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ApiService } from '../../../../core/services/api.service';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,6 +29,13 @@ export class LoginComponent {
 
   ngOnInit(): void {}
 
+  navigateToForgotPassword() {
+    this.router.navigate(['/esqueceu-senha']);
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/cadastro']);
+  }
 
   initForm() {
     this.loginForm = this.formBuilder.group({

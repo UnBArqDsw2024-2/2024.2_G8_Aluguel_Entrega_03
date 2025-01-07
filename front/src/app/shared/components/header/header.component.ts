@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +9,14 @@ import { RouterModule } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  constructor(private router: Router) {}
+
+  navigateToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  navigateToCreateAnuncio() {
+    this.router.navigate(['/anunciar']);
+  }
+}
