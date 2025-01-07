@@ -133,6 +133,6 @@ http://localhost:4200/
 
 | Versão |    Data    |         Descrição          |  Autor(es)  |
 | :----: | :--------: | :------------------------: | :---------: |
-| `1.0`  | 06/01/2025 | Atualização do README para a entrega | [Pedro Izarias](https://github.com/Izarias) |
+| `1.0`  | 06/01/2025 | Criação do documento e adição dos participantes e sobre | [Pedro Izarias](https://github.com/Izarias) |
 | `1.1`  | 06/01/2025 | Incluído orientações sobre como configurar o ambiente | [Ester Lino](https://github.com/esteerlino) |
 | `1.2`  | 06/01/2025 | Adição das imagens do projeto | [Pedro Izarias](https://github.com/Izarias), [Pedro Sena](https://github.com/pedroyen21) |
