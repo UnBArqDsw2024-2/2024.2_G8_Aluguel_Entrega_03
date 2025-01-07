@@ -1,0 +1,144 @@
+$bg-color: #F4F7FE;
+$border-radius: 6px;
+$highlight-color: #FF9E42;
+$highlight-hover: #e68a00;
+$border-color: #ccc;
+$text-color: #333;
+$font-family: 'Open Sans';	
+
+
+// Exemplo de estilo para o componente de Cadastrar Anúncio
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 2rem 30% 2rem 2rem;
+  background-color: $bg-color;
+  border-radius: $border-radius;
+  color: $text-color;
+  font-family: $font-family;
+
+  h1 {
+    text-align: left;
+    margin: 16px 0 16px 0;
+    font-size: 72px;
+    font-weight: bold;
+  }
+  
+  .form-separator {
+    height: 2px; /* Thickness of the separator */
+    background-color: #565656; /* Color of the separator */
+    margin: 0; /* Spacing around the separator */
+    border: none;
+  }
+
+  form {
+    fieldset {
+      margin-bottom: 1.5rem;
+
+      legend {
+        font-weight: bold;
+        font-size: 32px;
+      }
+
+      label{
+        font-size: 20px;
+        font-weight: bold;
+        font-family: $font-family;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        max-width: 100%;
+
+        label {
+          margin-bottom: 0.3rem;
+          font-weight: 500;
+        }
+
+        input,
+        select,
+        textarea {
+          padding: 0.5rem; /* Espaçamento interno */
+          color: #747474; /* Cor do texto */
+          background-color: #E9E9E9; /* Fundo cinza claro */
+          border: 1px solid #9B9B9B; /* Borda fina e clara */
+          border-radius: 8px; /* Cantos arredondados */
+          outline: none; /* Remove o contorno padrão ao focar */
+        }
+
+        // Área de drop para imagens
+        .drop-area {
+          border: 2px dashed $border-color;
+          border-radius: 5px;
+          border-color: $highlight-color;
+          padding: 2rem;
+          text-align: center;
+          transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .upload-area {
+          border: 2px dashed $highlight-color; /* Borda tracejada */
+          border-radius: 8px; /* Bordas arredondadas */
+          background-color: #fff7f5; /* Fundo suave */
+          text-align: center; /* Centraliza o texto e o ícone */
+          padding: 2rem; /* Espaçamento interno */
+          transition: background-color 0.3s ease, border-color 0.3s ease;
+
+          /* Efeito ao arrastar */
+          &.dragging {
+            background-color: #ffe8e5; /* Fundo ao arrastar */
+            border-color: #ff4500; /* Borda vermelha */
+          }
+
+          .upload-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .upload-icon {
+              height: 52px;
+              width: 52px;
+              margin-bottom: 0.5rem;
+            }
+
+            p {
+              font-size: 1rem;
+              color: #000000;
+
+              .upload-link {
+                color: $highlight-hover; /* Cor do link */
+                font-weight: bold;
+                cursor: pointer;
+
+                &:hover {
+                  text-decoration: none; /* Remove sublinhado ao passar o mouse */
+                }
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    // Botão de enviar
+    .btn-submit {
+      display: block;
+      width: 30%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      background-color: $highlight-color;
+      color: #fff;
+      border: none;
+      border-radius: 6px 0px 6px 0px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: $highlight-hover;
+      }
+    }
+  }
+}
