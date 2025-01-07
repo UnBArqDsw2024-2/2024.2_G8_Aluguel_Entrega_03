@@ -1,0 +1,10 @@
+<div class="property-list">
+  <div *ngFor="let property of properties" class="property-card">
+    <img [src]="property.image" alt="Imagem do imóvel" />
+    <div class="property-info">
+      <p>{{ property.type }}, {{ property.location }}</p>
+      <p>{{ property.rooms }} Quartos · {{ property.size }} m²</p>
+      <p>{{ property.price | currency }}</p>
+    </div>
+  </div>
+</div>
