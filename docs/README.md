@@ -42,7 +42,7 @@ O repositório do projeto está disponível no GitHub: . Nele, você encontrará
 
 A documentação do projeto é gerada utilizando o [Docsify](https://docsify.js.org/), uma ferramenta que permite a criação de sites de documentação dinâmicos a partir de arquivos Markdown.
 
-Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de contribuição, visite o repositório oficial: . 
+Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de contribuição, visite o repositório oficial: [Repositório](https://github.com/UnBArqDsw2024-2/2024.2_G8_Aluguel_Entrega_03). 
 
 ## Screenshots da Terceira Entrega
 Adicione 2 ou mais screenshots em termos de artefatos realizados na entrega.
