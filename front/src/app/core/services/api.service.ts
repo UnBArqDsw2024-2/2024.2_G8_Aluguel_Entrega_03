@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { APP_API } from '../../config/api';
+// import { APP_API } from '../../config/api';
+const APP_API = 'http://localhost:3000'
 
 @Injectable({
   providedIn: 'root', // Garantia do Singleton no Angular
