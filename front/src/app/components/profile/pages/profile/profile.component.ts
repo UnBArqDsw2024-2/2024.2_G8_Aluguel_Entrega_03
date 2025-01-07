@@ -1,37 +1,13 @@
+import { HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  Validators,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { ApiService } from '../../../../core/services/api.service';
-import { HttpClientModule } from '@angular/common/http';
 import { SharedComponents } from '../../../../shared/shared.components';
-
-export class ProfileFormFactory {
-  static createForm(fb: FormBuilder): FormGroup {
-    return fb.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-      site: ['', Validators.required],
-      phone: ['', Validators.required],
-    });
-  }
-}
-
-export class UserAdapter {
-  static adapt(apiResponse: any): any {
-    return {
-      name: apiResponse.name,
-      email: apiResponse.email,
-      site: apiResponse.site,
-      phone: apiResponse.phone,
-    };
-  }
-}
 
 export class ProfileFormFactory {
   static createForm(fb: FormBuilder): FormGroup {
