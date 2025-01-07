@@ -5,12 +5,66 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { HeaderComponent } from '../../../../shared/components/header/header.component';
-import { FooterComponent } from '../../../../shared/components/footer/footer.component';
+import { HeaderComponent } from '../../shared/components/header/header.component';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../../../../core/services/api.service';
+
+export class ListingFormFactory {
+  static createForm(fb: FormBuilder): FormGroup {
+    return fb.group({
+      userCpfCnpj: ['123456789'],
+      propertyType: ['', Validators.required],
+      numberOfBedrooms: [null, Validators.required],
+      numberOfBathrooms: [null, Validators.required],
+      parkingSpaces: [null],
+      address: fb.group({
+        postalCode: ['', Validators.required],
+        street: ['', Validators.required],
+        neighborhood: ['', Validators.required],
+        number: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        logradouro: [''],
+      }),
+      titulo: ['', Validators.required],
+      adType: ['', Validators.required],
+      price: [null],
+      condoFee: [null],
+      propertyTax: [null],
+      description: ['', Validators.required],
+    });
+  }
+}
+
+export class ListingAdapter {
+  static adapt(apiResponse: any): any {
+    return {
+      userCpfCnpj: apiResponse.userCpfCnpj || '123456789',
+      propertyType: apiResponse.propertyType,
+      numberOfBedrooms: apiResponse.numberOfBedrooms,
+      numberOfBathrooms: apiResponse.numberOfBathrooms,
+      parkingSpaces: apiResponse.parkingSpaces,
+      address: {
+        postalCode: apiResponse.address.postalCode,
+        street: apiResponse.address.street,
+        neighborhood: apiResponse.address.neighborhood,
+        number: apiResponse.address.number,
+        city: apiResponse.address.city,
+        state: apiResponse.address.state,
+        logradouro: apiResponse.address.logradouro,
+      },
+      titulo: apiResponse.titulo,
+      adType: apiResponse.adType,
+      price: apiResponse.price,
+      condoFee: apiResponse.condoFee,
+      propertyTax: apiResponse.propertyTax,
+      description: apiResponse.description,
+    };
+  }
+}
 
 @Component({
   selector: 'app-create',
@@ -28,6 +82,8 @@ import { ApiService } from '../../../../core/services/api.service';
 export class CreateComponent implements OnInit {
   anuncioForm!: FormGroup;
   imagensSelecionadas: File[] = [];
+  isDragging = false;
+  selectedFiles: File[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -36,53 +92,36 @@ export class CreateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Inicializando o FormGroup
-    this.anuncioForm = this.fb.group({
-      userCpfCnpj: ['123456789'],
-      // Dados do Imóvel
-      propertyType: ['', Validators.required],
-      numberOfBedrooms: [null, Validators.required],
-      numberOfBathrooms: [null, Validators.required],
-      parkingSpaces: [null],
 
-      // Endereço
-      address: this.fb.group({
-        postalCode: ['', Validators.required],
-        street: ['', Validators.required],
-        neighborhood: ['', Validators.required],
-        number: ['', Validators.required],
-        city: ['', Validators.required],
-        state: ['', Validators.required],
-        logradouro: [''],
-      }),
+    this.anuncioForm = ListingFormFactory.createForm(this.fb);
 
-      // Dados do Anúncio
-      titulo: ['', Validators.required],
-      adType: ['', Validators.required],
-      price: [null],
-      condoFee: [null],
-      propertyTax: [null],
-      description: ['', Validators.required],
+
+    this.apiService.get('listing/123456789').subscribe(
+      (response) => {
+        const adaptedData = ListingAdapter.adapt(response);
+        this.anuncioForm.patchValue(adaptedData);
+      },
+      (error) => {
+        console.error('Erro ao buscar dados do anúncio:', error);
+      }
+    );
+
+
+    this.anuncioForm.valueChanges.subscribe((values) => {
+      console.log('Alterações no formulário detectadas:', values);
     });
   }
 
-  // Método chamado quando o usuário seleciona arquivos
-  isDragging = false;
-  selectedFiles: File[] = [];
-
-  // Método chamado ao arrastar algo para o campo
   onDragOver(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = true;
   }
 
-  // Método chamado ao sair do campo de upload
   onDragLeave(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = false;
   }
 
-  // Método chamado ao soltar arquivos no campo
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = false;
@@ -97,7 +136,6 @@ export class CreateComponent implements OnInit {
     }
   }
 
-  // Método chamado ao selecionar arquivos via input
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -108,23 +146,18 @@ export class CreateComponent implements OnInit {
     }
   }
 
-  // Método que envia o formulário
   onSubmit(): void {
     console.log(this.anuncioForm);
     if (this.anuncioForm.valid) {
-      // Aqui você pode enviar os dados para uma API, por exemplo
       const dadosAnuncio = this.anuncioForm.value;
-      console.log('Formulário válido! Dados: ', dadosAnuncio);
-
-      // As imagens selecionadas ficam em "this.imagensSelecionadas"
-      console.log('Imagens:', this.imagensSelecionadas);
+      console.log('Formulário válido! Dados:', dadosAnuncio);
 
       this.apiService.post('property', dadosAnuncio).subscribe(
         (response) => {
-          console.log(response);
+          console.log('Resposta da API:', response);
         },
         (error) => {
-          console.error(error);
+          console.error('Erro ao enviar dados para a API:', error);
         }
       );
     } else {
