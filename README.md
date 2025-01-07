@@ -1,4 +1,4 @@
-# HostHub
+# <img src="PadroesDeProjeto/image/HostHub.png" alt="HostHub" width="60px" style="vertical-align: middle;"> HostHub
 
 **Código da Disciplina**: FGA0208<br>
 **Número do Grupo**: 08<br>
@@ -23,7 +23,7 @@
 | 190134810  | Shaine Aparecida Cardoso de Oliveira|
 | 200028154  | Thiago Ribeiro Freitas              |
 
-## Sobre
+## Sobre 
 
 O projeto **HostHub** é uma iniciativa do Grupo 8 da disciplina de Arquitetura e Desenho de Software da Universidade de Brasília (UnB). Este projeto visa desenvolver uma plataforma online para a divulgação de anúncios de imóveis, facilitando a conexão entre proprietários e potenciais locatários.
 
@@ -35,6 +35,20 @@ Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de 
 
 ## Screenshots da Terceira Entrega
 
+### Tela de cadastrar anúncio
+![Tela de cadastrar anúncio](PadroesDeProjeto/image/front/cadastrar-anuncio.png)
+
+### Tela de cadastrar usuário
+![Tela de cadastrar usuário](PadroesDeProjeto/image/front/cadastro.png)
+
+### Tela de recuperar senha
+![Tela de recuperar senha](PadroesDeProjeto/image/front/esqueceu-senha.png)
+
+### Tela home
+![Tela home](PadroesDeProjeto/image/front/home.png)
+
+### Tela de login
+![Tela de login](PadroesDeProjeto/image/front/login.png)
 
 ## Há algo a ser executado?
 
@@ -114,3 +128,11 @@ O projeto estará acessível no endereço padrão:
 ```bash
 http://localhost:4200/
 ```
+
+## Histórico de Versão
+
+| Versão |    Data    |         Descrição          |  Autor(es)  |
+| :----: | :--------: | :------------------------: | :---------: |
+| `1.0`  | 06/01/2025 | Criação do documento e adição dos participantes e sobre | [Pedro Izarias](https://github.com/Izarias) |
+| `1.1`  | 06/01/2025 | Incluído orientações sobre como configurar o ambiente | [Ester Lino](https://github.com/esteerlino) |
+| `1.2`  | 06/01/2025 | Adição das imagens do projeto | [Pedro Izarias](https://github.com/Izarias), [Pedro Sena](https://github.com/pedroyen21) |
