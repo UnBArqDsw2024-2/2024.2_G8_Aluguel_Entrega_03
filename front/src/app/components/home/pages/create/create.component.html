@@ -12,14 +12,9 @@
       <legend>Dados do Imóvel</legend>
 
       <div class="flex flex-col md:flex-row gap-2">
-        <div class="form-group w-full md:w-1/2 w-full md:w-1/2">
-          <label for="tipoImovel">Selecione o tipo de Imóvel</label>
-          <select
-            id="tipoImovel"
-            formControlName="tipoImovel"
-            class="h-full"
-            required
-          >
+        <div class="form-group w-full md:w-1/2">
+          <label for="propertyType">Selecione o tipo de Imóvel</label>
+          <select id="propertyType" formControlName="propertyType" class="h-full" required>
             <option value="">Selecione</option>
             <option value="Casa">Casa</option>
             <option value="Apartamento">Apartamento</option>
@@ -28,65 +23,38 @@
           </select>
         </div>
 
-        <div class="form-group w-full md:w-1/2 w-full md:w-1/2">
-          <label for="quantidadeQuartos">N° de Quartos</label>
-          <input
-            type="number"
-            id="quantidadeQuartos"
-            formControlName="quantidadeQuartos"
-            required
-          />
+        <div class="form-group w-full md:w-1/2">
+          <label for="numberOfBedrooms">N° de Quartos</label>
+          <input type="number" id="numberOfBedrooms" formControlName="numberOfBedrooms" required />
         </div>
       </div>
 
       <div class="flex flex-col md:flex-row gap-2">
         <div class="form-group w-full md:w-1/2">
-          <label for="quantidadeBanheiros">N° de Banheiros</label>
-          <input
-            type="number"
-            id="quantidadeBanheiros"
-            formControlName="quantidadeBanheiros"
-            required
-          />
+          <label for="numberOfBathrooms">N° de Banheiros</label>
+          <input type="number" id="numberOfBathrooms" formControlName="numberOfBathrooms" required />
         </div>
 
         <div class="form-group w-full md:w-1/2">
-          <label for="vagasGaragem">N° de vagas de Garagem</label>
-          <input
-            type="number"
-            id="vagasGaragem"
-            formControlName="vagasGaragem"
-          />
+          <label for="parkingSpaces">N° de vagas de Garagem</label>
+          <input type="number" id="parkingSpaces" formControlName="parkingSpaces" />
         </div>
       </div>
 
       <div class="form-group w-full md:w-1/2">
-        <label for="imagens">Adicionar Imagens</label>
-        <div
-          class="upload-area"
-          (drop)="onDrop($event)"
-          (dragover)="onDragOver($event)"
-          (dragleave)="onDragLeave($event)"
-        >
+        <label for="images">Adicionar Imagens</label>
+        <div class="upload-area" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)">
           <div class="upload-content">
             <div class="upload-icon">
               <img src="../../../../assets/images/upload-icon.png" />
             </div>
             <p style="font-weight: bold">
               Arraste e solte arquivos aqui ou
-              <span class="upload-link" (click)="fileInput.click()"
-                >Procure uma Mídia</span
-              >
+              <span class="upload-link" (click)="fileInput.click()">Procure uma Mídia</span>
             </p>
           </div>
 
-          <input
-            type="file"
-            #fileInput
-            (change)="onFileSelected($event)"
-            multiple
-            hidden
-          />
+          <input type="file" #fileInput (change)="onFileSelected($event)" multiple hidden />
         </div>
       </div>
     </fieldset>
@@ -94,56 +62,46 @@
     <div class="form-separator"></div>
 
     <!-- DADOS DO ENDEREÇO -->
-    <fieldset>
-      <legend>Dados do Endereço</legend>
-      <div class="flex flex-col md:flex-row gap-2">
-        <div class="form-group w-full md:w-1/2">
-          <label for="cep">CEP</label>
-          <input
-            type="text"
-            id="cep"
-            formControlName="cep"
-            required
-            mask="000000-000"
-            class="input-cep"
-          />
+    <div formGroupName="address">
+      <fieldset>
+        <legend>Dados do Endereço</legend>
+        <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2">
+            <label for="cep">CEP</label>
+            <input type="text" id="cep" formControlName="postalCode" required mask="000000-000" class="input-cep" />
+          </div>
+
+          <div class="form-group w-full md:w-1/2">
+            <label for="rua">Endereço</label>
+            <input type="text" id="rua" formControlName="street" required />
+          </div>
         </div>
 
-        <div class="form-group w-full md:w-1/2">
-          <label for="rua">Endereço</label>
-          <input type="text" id="rua" formControlName="rua" required />
-        </div>
-      </div>
+        <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2">
+            <label for="bairro">Bairro</label>
+            <input type="text" id="bairro" formControlName="neighborhood" required />
+          </div>
 
-      <div class="flex flex-col md:flex-row gap-2">
-        <div class="form-group w-full md:w-1/2">
-          <label for="bairro">Bairro</label>
-          <input type="text" id="bairro" formControlName="bairro" required />
-        </div>
-
-        <div class="form-group w-full md:w-1/2">
-          <label for="numero">Número</label>
-          <input type="text" id="numero" formControlName="numero" required />
-        </div>
-      </div>
-
-      <div class="flex flex-col md:flex-row gap-2">
-        <div class="form-group w-full md:w-1/2">
-          <label for="cidade">Cidade</label>
-          <input type="text" id="cidade" formControlName="cidade" required />
+          <div class="form-group w-full md:w-1/2">
+            <label for="numero">Número</label>
+            <input type="text" id="numero" formControlName="number" required />
+          </div>
         </div>
 
-        <div class="form-group w-full md:w-1/2">
-          <label for="estado">Estado</label>
-          <input type="text" id="estado" formControlName="estado" required />
-        </div>
-      </div>
+        <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2">
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" formControlName="city" required />
+          </div>
 
-      <div class="form-group w-full">
-        <label for="logradouro">Logradouro (complemento)</label>
-        <input type="text" id="logradouro" formControlName="logradouro" />
-      </div>
-    </fieldset>
+          <div class="form-group w-full md:w-1/2">
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" formControlName="state" required />
+          </div>
+        </div>
+      </fieldset>
+    </div>
 
     <div class="form-separator"></div>
 
@@ -157,13 +115,8 @@
         </div>
 
         <div class="form-group w-full md:w-1/2">
-          <label for="tipoAnuncio">Selecione o Tipo de Anúncio</label>
-          <select
-            id="tipoAnuncio"
-            formControlName="tipoAnuncio"
-            class="h-full"
-            required
-          >
+          <label for="adType">Selecione o Tipo de Anúncio</label>
+          <select id="adType" formControlName="adType" class="h-full" required>
             <option value="">Selecione</option>
             <option value="Aluguel">Aluguel</option>
             <option value="Venda">Venda</option>
@@ -173,51 +126,31 @@
 
       <div class="flex flex-col md:flex-row gap-2">
         <div class="form-group w-full md:w-1/2">
-          <label for="valorAluguel">Valor de Aluguel</label>
-          <input
-            type="text"
-            id="valorAluguel"
-            formControlName="valorAluguel"
-            mask="separator.2"
-            prefix="R$ "
-          />
+          <label for="price">Valor de Aluguel/Venda</label>
+          <input type="text" id="price" formControlName="price" mask="separator.2" prefix="R$ " />
         </div>
 
+      <div class="flex flex-col md:flex-row gap-2">
         <div class="form-group w-full md:w-1/2">
-          <label for="valorCondominio">Valor de Condomínio</label>
-          <input
-            type="text"
-            id="valorCondominio"
-            formControlName="valorCondominio"
-            mask="separator.2"
-            prefix="R$ "
-          />
+          <label for="condoFee">Valor de Condomínio</label>
+          <input type="text" id="condoFee" formControlName="condoFee" mask="separator.2" prefix="R$ " />
         </div>
       </div>
 
       <div class="form-group w-full md:w-1/2">
-        <label for="valorIPTU">Valor do IPTU</label>
-        <input
-          type="text"
-          id="valorIPTU"
-          formControlName="valorIPTU"
-          mask="separator.2"
-          prefix="R$ "
-        />
+        <label for="propertyTax">Valor do IPTU</label>
+        <input type="text" id="propertyTax" formControlName="propertyTax" mask="separator.2" prefix="R$ " />
       </div>
 
       <div class="form-group w-full">
-        <label for="valorIPTU">Descrição do Anúncio</label>
-        <textarea
-          type="text"
-          id="description"
-          formControlName="description"
-          class="min-h-[6em] max-h-[8em]"
-        ></textarea>
+        <label for="description">Descrição do Anúncio</label>
+        <textarea type="text" id="description" formControlName="description" class="min-h-[6em] max-h-[8em]"></textarea>
       </div>
     </fieldset>
 
-    <button type="submit" class="btn-submit">Publicar Anúncio</button>
+    <div class="form-group w-full">
+      <button type="submit" class="btn-submit">Publicar Anúncio</button>
+    </div>
   </form>
 </div>
 
