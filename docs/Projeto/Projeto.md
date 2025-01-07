@@ -1,4 +1,4 @@
-** Projetos - Período   2024.2
+## Projetos - Período   2024.2
 
 Segue a lista de projetos desse período letivo:
 
