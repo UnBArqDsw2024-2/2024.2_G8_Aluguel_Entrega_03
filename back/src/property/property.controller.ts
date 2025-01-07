@@ -1,12 +1,24 @@
-import { Body, Controller, Get, Param, Post, Put, Delete, UseGuards} from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Put,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 import { CreatePropertyDto } from './dto/create-property.dto';
-import { PropertyResponseDto, PropertyUpdateStatusDto } from './dto/property-response.dto';
+import {
+  PropertyResponseDto,
+  PropertyUpdateStatusDto,
+} from './dto/property-response.dto';
 import { PropertyService } from './property.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('property')
 export class PropertyController {
-  constructor(private readonly propertyService: PropertyService) { }
+  constructor(private readonly propertyService: PropertyService) {}
 
   @Get()
   async findAll() {
@@ -34,10 +46,7 @@ export class PropertyController {
   }
 
   @Put(':id')
-  async update(
-    @Param('id') id: number,
-    @Body() data: CreatePropertyDto,
-  ) {
+  async update(@Param('id') id: number, @Body() data: CreatePropertyDto) {
     return this.propertyService.updateProperty(id, data);
   }
 
