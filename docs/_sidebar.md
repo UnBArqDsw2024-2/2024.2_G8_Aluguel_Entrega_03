@@ -1,7 +1,7 @@
 <!-- docs/_sidebar.md -->
 
 - [Home](/)
-- [Projetos](/Projetos/Projetos.md)
+- [Projetos](/Projetos/Projeto.md)
 
 - **Padrões de Projeto**
     - [3.1. Padrões de Projeto GoFs Criacionais](/PadroesDeProjeto/3.1.GoFsCriacionais.md)
