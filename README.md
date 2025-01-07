@@ -78,6 +78,9 @@ Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de 
 
 ( ) NÃO
 
+## É possível acessar o [deploy](https://front-arquitetura.vercel.app/home) ou rodar o projeto localmente:
+
+
 ## Configurando o Ambiente
 
 Este projeto utiliza **PostgreSQL**, **Docker**, **TypeScript** e **Angular**. Abaixo estão as instruções detalhadas para configurar e rodar o ambiente de desenvolvimento e produção.
