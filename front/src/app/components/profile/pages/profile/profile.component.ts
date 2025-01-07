@@ -33,6 +33,30 @@ export class UserAdapter {
   }
 }
 
+export class ProfileFormFactory {
+  static createForm(fb: FormBuilder): FormGroup {
+    return fb.group({
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      site: ['', Validators.required],
+      phone: ['', Validators.required],
+    });
+  }
+}
+
+export class UserAdapter {
+  static adapt(apiResponse: any): any {
+    return {
+      name: apiResponse.name,
+      email: apiResponse.email,
+      site: apiResponse.site,
+      phone: apiResponse.phone,
+    };
+  }
+}
+
 @Component({
   selector: 'app-profile',
   imports: [ReactiveFormsModule, HttpClientModule, SharedComponents],

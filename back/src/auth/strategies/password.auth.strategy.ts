@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from 'src/user/user.repository';
 import * as bcrypt from 'bcrypt';
+import { UserRepository } from 'src/user/user.repository';
 
 @Injectable()
 export class PasswordAuthStrategy {
@@ -10,11 +10,11 @@ export class PasswordAuthStrategy {
     const user = await this.userRepository.findByEmail(email);
 
     if (!user) {
-      return null; 
+      return null;
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
-    return isPasswordValid ? user : null; 
+    return isPasswordValid ? user : null;
   }
 }
