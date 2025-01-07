@@ -50,7 +50,6 @@ Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de 
 ### Tela de login
 ![Tela de login](docs/PadroesDeProjeto/image/front/login.png)
 
-<center>
 ### Protótipo de login
 ![Protótipo de login](docs/PadroesDeProjeto/image/front/prototipoLogin.png)
 
@@ -72,7 +71,6 @@ Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de 
 ### Protótipo da tela de mudar senha
 ![Protótipo da tela de mudar senha](docs/PadroesDeProjeto/image/front/prototipoSenha.png)
 
-</center>
 
 ## Há algo a ser executado?
 
