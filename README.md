@@ -50,6 +50,27 @@ Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de 
 ### Tela de login
 ![Tela de login](docs/PadroesDeProjeto/image/front/login.png)
 
+### Protótipo de login
+![Protótipo de login](PadroesDeProjeto/image/front/prototipoLogin.png)
+
+### Protótipo de cadastro de anúncio
+![Protótipo de cadastro de anúncio](PadroesDeProjeto/image/front/prototipoAnuncio.png)
+
+### Protótipo de cadastro de usuário
+![Protótipo de cadastro de usuário](PadroesDeProjeto/image/front/prototipoCadastro.png)
+
+### Protótipo de edição de perfil
+![Protótipo de edição de perfil](PadroesDeProjeto/image/front/prototipoEditarPerfil.png)
+
+### Protótipo de gerência de anúncio
+![Protótipo de gerência de anúncio](PadroesDeProjeto/image/front/prototipoGerenciarAnuncio.png)
+
+### Protótipo da tela home
+![Protótipo da tela home](PadroesDeProjeto/image/front/prototipoHome.png)
+
+### Protótipo da tela de mudar senha
+![Protótipo da tela de mudar senha](PadroesDeProjeto/image/front/prototipoSenha.png)
+
 ## Há algo a ser executado?
 
 (X) SIM

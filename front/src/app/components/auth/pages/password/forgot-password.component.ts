@@ -3,13 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SharedComponents } from '../../../../shared/shared.components';
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule], // Adicione CommonModule e ReactiveFormsModule
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, SharedComponents], // Adicione CommonModule e ReactiveFormsModule
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
