@@ -38,8 +38,17 @@ export class UserService {
 
     const encryptedPassword = await bcrypt.hash(data.password, 10);
 
+    const telephones = data.telephone || [];
+
+    const telephoneEntities = telephones.map((telephone) => {
+      telephone.number = data.telephone[0].number;
+      telephone.userId = data.cpf_cnpj;
+      return telephone;
+    });
+
     const user = UserFactory.createUser({
       ...data,
+      telephone: telephoneEntities,
       password: encryptedPassword,
     });
 
@@ -79,6 +88,30 @@ export class UserService {
       .setCpfCnpj(updatedUser.cpf_cnpj)
       .setEmail(updatedUser.email)
       .setSite(updatedUser.site)
+      .build();
+
+    return userResponse;
+  }
+
+  async deleteUser(cpf_cnpj: string): Promise<UserResponseDto> {
+    const user = await this.userRepository.findByCpfCnpj(cpf_cnpj);
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado.');
+    }
+    let deletedUser;
+
+    try {
+      deletedUser = await this.userRepository.deleteUser(cpf_cnpj);
+    } catch (e) {
+      console.log(e);
+    }
+
+    const builder = new UserResponseDtoBuilder();
+    const userResponse = builder
+      .setName(deletedUser.name)
+      .setCpfCnpj(deletedUser.cpf_cnpj)
+      .setEmail(deletedUser.email)
+      .setSite(deletedUser.site)
       .build();
 
     return userResponse;

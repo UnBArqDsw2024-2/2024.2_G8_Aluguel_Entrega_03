@@ -8,6 +8,10 @@ export class UserResponseDto {
 export class UserResponseDtoBuilder {
   private data: UserResponseDto;
 
+  constructor() {
+    this.data = new UserResponseDto();
+  }
+
   setName(name: string): UserResponseDtoBuilder {
     this.data.name = name;
     return this;

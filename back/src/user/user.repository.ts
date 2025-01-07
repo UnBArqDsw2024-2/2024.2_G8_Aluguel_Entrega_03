@@ -6,6 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CPFValidationStrategy } from './strategies/cpf-validation.strategy';
 import { UpdateStrategy } from './strategies/update-strategy.interface';
+import { LogOnErrorUtil } from './decorators/user.method-logger';
 
 @Injectable()
 export class UserRepository {
@@ -21,6 +22,10 @@ export class UserRepository {
       },
       include: { telephone: true },
     });
+  }
+
+  async findByEmail(email: string): Promise<User | null> {
+    return this.prisma.user.findUnique({ where: { email } });
   }
 
   async findByCpfCnpj(cpf_cnpj: string): Promise<User | null> {
@@ -97,5 +102,18 @@ export class UserRepository {
         password: hashedPassword,
       },
     });
+  }
+
+  @LogOnErrorUtil.create()
+  async deleteUser(cpf_cnpj: string): Promise<User> {
+    await this.prisma.telephone.deleteMany({
+      where: { userId: cpf_cnpj },
+    });
+
+    const deletedUser = await this.prisma.user.delete({
+      where: { cpf_cnpj: cpf_cnpj },
+    });
+
+    return deletedUser;
   }
 }

@@ -1,0 +1,89 @@
+<div class="bg-white shadow-lg rounded-lg overflow-hidden flex flex-col">
+    <!-- Image Section -->
+    <img class="w-full h-48 object-cover" [src]="anuncio.imagem || 'https://via.placeholder.com/400x300'"
+        alt="{{ anuncio.titulo }}" />
+
+    <!-- Info Section -->
+    <div class="p-4 flex flex-col flex-1">
+        <!-- Título e Endereço -->
+        <div class="mb-4">
+            <h2 class="text-xl font-semibold">{{ anuncio.titulo }}</h2>
+            <p class="text-gray-600">
+                {{ anuncio.endereco?.logradouro }}, {{ anuncio.endereco?.numero }},
+                {{ anuncio.endereco?.bairro }}, {{ anuncio.endereco?.cidade }} - {{ anuncio.endereco?.estado }}
+            </p>
+        </div>
+
+        <!-- Informações com Ícones -->
+        <div class="flex flex-wrap text-gray-700 mb-4">
+            <!-- Tipo do Imóvel -->
+            <div class="flex items-center mr-4 mb-2">
+                <!-- Icon for Tipo Imóvel -->
+                <svg class="w-5 h-5 text-[var(--color-primary)] mr-1" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7m-9-2v12" />
+                </svg>
+                <span>{{ anuncio.tipoImovel }}</span>
+            </div>
+
+            <!-- Tipo do Anúncio -->
+            <div class="flex items-center mr-4 mb-2">
+                <!-- Icon for Tipo Anúncio -->
+                <svg class="w-5 h-5 text-[var(--color-primary)] mr-1" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <span>{{ anuncio.tipoAnuncio }}</span>
+            </div>
+
+            <!-- Quantidade de Quartos -->
+            <div class="flex items-center mr-4 mb-2">
+                <!-- Icon for Quartos -->
+                <svg class="w-5 h-5 text-[var(--color-primary)] mr-1" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18v16H3V4z" />
+                </svg>
+                <span>{{ anuncio.quantidadeQuartos }} Quartos</span>
+            </div>
+
+            <!-- Quantidade de Banheiros -->
+            <div class="flex items-center mr-4 mb-2">
+                <!-- Icon for Banheiros -->
+                <svg class="w-5 h-5 text-[var(--color-primary)] mr-1" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M16 12h2a2 2 0 012 2v6a2 2 0 01-2 2h-12a2 2 0 01-2-2v-6a2 2 0 012-2h2m4 0v-4a2 2 0 012-2h4" />
+                </svg>
+                <span>{{ anuncio.quantidadeBanheiros }} Banheiros</span>
+            </div>
+
+            <!-- Metros Quadrados -->
+            <div class="flex items-center mr-4 mb-2">
+                <!-- Icon for Metros Quadrados -->
+                <svg class="w-5 h-5 text-[var(--color-primary)] mr-1" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 12h6M9 16h6M9 8h6M3 6h18v12H3V6z" />
+                </svg>
+                <span>{{ anuncio.metrosQuadrados }} m²</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="mt-auto flex space-x-2">
+            <button
+                class="bg-[var(--color-primary)] text-white px-4 py-2 rounded hover:bg-[var(--advanced-dark-orange)]">
+                Editar
+            </button>
+            <button
+                class="bg-[var(--advanced-normal-blue)] text-white px-4 py-2 rounded hover:bg-[var(--advanced-dark-blue)]">
+                Pausar
+            </button>
+            <button
+                class="bg-[var(--neutral-dark)] text-white px-4 py-2 rounded hover:bg-[var(--neutral-black)]">
+                Excluir
+            </button>
+        </div>
+    </div>
+</div>
