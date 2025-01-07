@@ -4,8 +4,8 @@ import { HomeRoutes } from './components/home/home.routes';
 import { AnunciosRoutes } from './components/anuncios/anuncios.routes';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   ...AuthRoutes,
   ...HomeRoutes,
-  ...AnunciosRoutes
+  ...AnunciosRoutes,
 ];

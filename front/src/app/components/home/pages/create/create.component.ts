@@ -1,13 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { HeaderComponent } from '../../shared/components/header/header.component';
-import { FooterComponent } from '../../shared/components/footer/footer.component';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
+import { HeaderComponent } from '../../../../shared/components/header/header.component';
+import { FooterComponent } from '../../../../shared/components/footer/footer.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-listing',
-  templateUrl: './listing.component.html',
-  styleUrls: ['./listing.component.scss'],
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.scss'],
   imports: [
     ReactiveFormsModule,
     HeaderComponent,
@@ -16,11 +22,11 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
   ],
   providers: [provideNgxMask()],
 })
-export class ListingComponent implements OnInit {
+export class CreateComponent implements OnInit {
   anuncioForm!: FormGroup;
   imagensSelecionadas: File[] = [];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     // Inicializando o FormGroup
@@ -104,6 +110,7 @@ export class ListingComponent implements OnInit {
       // Exemplo de requisição (usando um service fictício):
       // this.meuService.cadastrarAnuncio(dadosAnuncio, this.imagensSelecionadas)
       //   .subscribe(() => alert('Anúncio cadastrado com sucesso!'));
+      this.router.navigate(['/home']);
     } else {
       console.log('Formulário inválido, verifique os campos obrigatórios.');
     }
