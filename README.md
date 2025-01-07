@@ -1,31 +1,116 @@
-# RepositorioTemplate
+# HostHub
 
-Repositório que deve ser utilizado como template inicial pelos grupos da matéria de Arquitetura e Desenho de Software.
+**Código da Disciplina**: FGA0208<br>
+**Número do Grupo**: 08<br>
+**Entrega**: 03<br>
 
-## Introdução
+## Alunos
 
-Este repositório traz um template de repo de documentação a ser seguido pelos grupos de arquitetura e desenho de software.
+|Matrícula | Aluno |
+| -- | -- |
+| 211061350  | Alexandre de Santana Beck           |
+| 180098080  | Arthur Carneiro Trindade            |
+| 200054333  | Arthur Gabriel Lima Gomes           |
+| 200015753  | Caio Berg Carlos Leite              |
+| 202063201  | Ester Flores Lino da Silva          |
+| 202023663  | Gabriel Basto Bertolazi             |
+| 190087501  | Gabriel Marcolino Rodrigues         |
+| 190028475  | Gabriela Tiago de Araujo            |
+| 190091720  | Lucas Macedo Barboza                |
+| 202023968  | Miguel Moreira da Silva de Oliveira |
+| 200062620  | Pedro Augusto Dourado Izarias       |
+| 211029540  | Pedro Sena Barbosa Holtz Yen        |
+| 190134810  | Shaine Aparecida Cardoso de Oliveira|
+| 200028154  | Thiago Ribeiro Freitas              |
 
-## Tecnologia
+## Sobre
 
-A geração do site estático é realizada utilizando o [docsify](https://docsify.js.org/).
+O projeto **HostHub** é uma iniciativa do Grupo 8 da disciplina de Arquitetura e Desenho de Software da Universidade de Brasília (UnB). Este projeto visa desenvolver uma plataforma online para a divulgação de anúncios de imóveis, facilitando a conexão entre proprietários e potenciais locatários.
 
-```shell
-"Docsify generates your documentation website on the fly. Unlike GitBook, it does not generate static html files. Instead, it smartly loads and parses your Markdown files and displays them as a website. To start using it, all you need to do is create an index.html and deploy it on GitHub Pages."
+O repositório do projeto está disponível no GitHub: [HostHub](https://github.com/UnBArqDsw2024-2/2024.2_G8_Aluguel_Entrega_03) . Nele, você encontrará a estrutura do projeto, incluindo diretórios para o back-end (`back`), front-end (`front`) e documentação (`docs`).
+
+A documentação do projeto é gerada utilizando o [Docsify](https://docsify.js.org/), uma ferramenta que permite a criação de sites de documentação dinâmicos a partir de arquivos Markdown.
+
+Para mais detalhes sobre o projeto, incluindo o código-fonte e instruções de contribuição, visite o repositório oficial: [Repoitório do HostHub](https://github.com/UnBArqDsw2024-2/2024.2_G8_Aluguel_Entrega_03)
+
+## Screenshots da Terceira Entrega
+
+
+## Há algo a ser executado?
+
+(X) SIM
+
+( ) NÃO
+
+## Configurando o Ambiente
+
+Este projeto utiliza **PostgreSQL**, **Docker**, **TypeScript** e **Angular**. Abaixo estão as instruções detalhadas para configurar e rodar o ambiente de desenvolvimento e produção.
+
+---
+
+## **1. Configuração do Backend**
+
+### **Passo 1: Clonar o Repositório**
+
+```bash
+git clone <link do repositório>
 ```
 
-### Instalando o docsify
+### **Passo 2: Configurar o arquivo `.env`**
 
-Execute o comando:
+Crie o arquivo `.env` na raiz do backend com as seguintes variáveis:
 
-```shell
-npm i docsify-cli -g
+```bash
+POSTGRES_PRISMA_URL="postgresql://nest_user:nest_password@localhost:5432/nest_database"
+POSTGRES_URL_NON_POOLING="postgresql://nest_user:nest_password@localhost:5432/nest_database"
 ```
 
-### Executando localmente
+### **Passo 3: Executar o Docker Compose**
 
-Para iniciar o site localmente, utilize o comando:
+Inicie o banco de dados com Docker Compose:
 
-```shell
-docsify serve ./docs
+```bash
+docker compose up -d
+```
+
+### **Passo 4: Aplicar Migrations**
+
+Antes de rodar o projeto, aplique as migrations do Prisma com o comando:
+
+```bash
+npx prisma migrate dev
+```
+
+### **Passo 5: Rodar o Backend**
+
+Execute o seguinte comando para iniciar o servidor do backend:
+
+```bash
+npm run start:dev
+```
+
+---
+
+## **2. Configuração do Frontend**
+
+### **Passo 1: Instalar Dependências**
+
+Navegue até o diretório do frontend e instale as dependências:
+
+```bash
+npm install
+```
+
+### **Passo 2: Rodar o Servidor de Desenvolvimento**
+
+Para rodar o frontend localmente, execute o comando:
+
+```bash
+npm start
+```
+
+O projeto estará acessível no endereço padrão:
+
+```bash
+http://localhost:4200/
 ```
