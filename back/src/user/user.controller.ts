@@ -3,6 +3,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserResponseDto } from './dto/user-response.dto';
 import { UserService } from './user.service';
+import { Get } from '@nestjs/common';
 
 @Controller('users')
 export class UserController {
@@ -28,5 +29,10 @@ export class UserController {
     @Body('cpf_cnpj') cpf_cnpj: string,
   ): Promise<UserResponseDto> {
     return this.userService.deleteUser(cpf_cnpj);
+  }
+
+  @Get(':cpf_cnpj')
+  async getUserInfo(@Param('cpf_cnpj') cpf: string): Promise<UserResponseDto> {
+    return this.userService.getUserByCpfCnpj(cpf);
   }
 }

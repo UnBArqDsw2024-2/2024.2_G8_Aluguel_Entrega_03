@@ -94,10 +94,6 @@ export class UserService {
   }
 
   async deleteUser(cpf_cnpj: string): Promise<UserResponseDto> {
-    const user = await this.userRepository.findByCpfCnpj(cpf_cnpj);
-    if (!user) {
-      throw new NotFoundException('Usuário não encontrado.');
-    }
     let deletedUser;
 
     try {
@@ -115,5 +111,14 @@ export class UserService {
       .build();
 
     return userResponse;
+  }
+
+  async getUserByCpfCnpj(cpf_cnpj: string): Promise<UserResponseDto> {
+    const user = await this.userRepository.findByCpfCnpj(cpf_cnpj);
+    if (!user) {
+      throw new NotFoundException('Usuário não encontrado.');
+    }
+
+    return user;
   }
 }
