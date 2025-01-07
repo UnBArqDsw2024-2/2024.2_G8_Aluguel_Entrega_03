@@ -1,0 +1,49 @@
+.property-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.property-card {
+  width: 280px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  background-color: #fff;
+  justify-content: center;
+}
+
+.property-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.property-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.property-info {
+  padding: 16px;
+}
+
+.property-info p {
+  margin: 4px 0;
+  color: #333;
+  font-size: 14px;
+}
+
+.property-info p:last-child {
+  font-weight: bold;
+  color: #007bff;
+}

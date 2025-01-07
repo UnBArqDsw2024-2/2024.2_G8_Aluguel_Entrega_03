@@ -21,7 +21,7 @@ interface PasswordResetError {
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, SharedComponents],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, SharedComponents], // Adicione CommonModule e ReactiveFormsModule
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;

@@ -1,13 +1,18 @@
 import { Component } from '@angular/core';
-import { FormBuilder,FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ApiService } from '../../../../core/services/api.service';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { SharedComponents } from '../../../../shared/shared.components';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, HttpClientModule, ReactiveFormsModule, RouterModule],
+  imports: [ReactiveFormsModule, HttpClientModule, SharedComponents],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
   standalone: true,
@@ -24,6 +29,14 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {}
+
+  navigateToForgotPassword() {
+    this.router.navigate(['/esqueceu-senha']);
+  }
+
+  navigateToRegister() {
+    this.router.navigate(['/cadastro']);
+  }
 
   initForm() {
     this.loginForm = this.formBuilder.group({

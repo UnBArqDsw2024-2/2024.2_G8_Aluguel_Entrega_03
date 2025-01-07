@@ -7,7 +7,7 @@ import { PropertyPrototype } from './prototype/property.prototype';
 
 @Injectable()
 export class PropertyRepository {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   async createProperty(data: CreatePropertyDto): Promise<Property> {
     const userExists = await this.prisma.user.findUnique({
@@ -40,15 +40,15 @@ export class PropertyRepository {
         // Cria endereço, se vier no DTO
         address: data.address
           ? {
-            create: {
-              neighborhood: data.address.neighborhood,
-              number: data.address.number,
-              street: data.address.street,
-              city: data.address.city,
-              state: data.address.state,
-              postalCode: data.address.postalCode,
-            },
-          }
+              create: {
+                neighborhood: data.address.neighborhood,
+                number: data.address.number,
+                street: data.address.street,
+                city: data.address.city,
+                state: data.address.state,
+                postalCode: data.address.postalCode,
+              },
+            }
           : undefined,
       },
       include: {
@@ -61,7 +61,10 @@ export class PropertyRepository {
       where: { addressPk: id },
     });
   }
-  async updateProperty(id: number, data: Partial<PropertyPrototype>): Promise<Property> {
+  async updateProperty(
+    id: number,
+    data: Partial<PropertyPrototype>,
+  ): Promise<Property> {
     return this.prisma.property.update({
       where: { addressPk: id },
       data: {
@@ -81,15 +84,15 @@ export class PropertyRepository {
         },
         address: data.address
           ? {
-            update: {
-              neighborhood: data.address.neighborhood,
-              number: data.address.number,
-              street: data.address.street,
-              city: data.address.city,
-              state: data.address.state,
-              postalCode: data.address.postalCode,
-            },
-          }
+              update: {
+                neighborhood: data.address.neighborhood,
+                number: data.address.number,
+                street: data.address.street,
+                city: data.address.city,
+                state: data.address.state,
+                postalCode: data.address.postalCode,
+              },
+            }
           : undefined,
       },
       include: {

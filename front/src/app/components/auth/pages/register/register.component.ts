@@ -4,18 +4,11 @@ import { FormPrototype } from '../../../../shared/models/form-prototype.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../../core/services/api.service';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
-  imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule,
-    SharedComponents,
-  ],
+  imports: [SharedComponents, FormsModule, CommonModule],
   providers: [ApiService],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -26,7 +19,7 @@ export class RegisterComponent {
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
-  constructor(private apiService: ApiService) {
+  constructor(private apiService: ApiService, private router: Router) {
     this.registerForm = new FormPrototype({
       name: '',
       cpf_cnpj: '',
@@ -35,6 +28,10 @@ export class RegisterComponent {
       site: '',
       confirmPassword: '',
     });
+  }
+
+  navigateToLogin() {
+    this.router.navigate(['/login']);
   }
 
   validateForm(): boolean {

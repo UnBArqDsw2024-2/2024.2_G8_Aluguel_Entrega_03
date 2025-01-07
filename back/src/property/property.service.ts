@@ -47,6 +47,19 @@ export class PropertyService {
       .withDescription(property.description)
       .withCpfCnpj(property.userCpfCnpj)
       .withCreatedAt(new Date())
+      .withStatus(property.status)
+      .withAddressPk(property.addressPk)
+      .withAdType(property.adType)
+      .withCondoFee(property.condoFee)
+      .withPropertyTax(property.propertyTax)
+      .withAvailable(property.available)
+      .withNumberOfBedrooms(property.numberOfBedrooms)
+      .withPrice(property.price)
+      .withCreationDate(property.creationDate)
+      .withParkingSpaces(property.parkingSpaces)
+      .withPropertyType(property.propertyType)
+      .withNumberOfBathrooms(property.numberOfBathrooms)
+      .withUserCpfCnpj(property.userCpfCnpj)
       .build();
 
     return response;

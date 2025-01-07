@@ -1,13 +1,8 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
   <!-- Card de Login -->
-  <div class="bg-white shadow-lg rounded-lg py-8 px-16 w-full max-w-md">
+  <app-card class="px-16">
     <!-- Logo e Título -->
-    <div class="logo">
-      <img
-        src="../../../../assets/images/hosthub-header-logo.png"
-        alt="Host Hub Logo"
-      />
-    </div>
+    <app-logo-name></app-logo-name>
 
     <p class="text-gray-600 text-center text-l font-bold mb-5">
       Entre em sua conta
@@ -57,7 +52,7 @@
         </div>
         <div class="mt-1">
           <a
-            routerLink="/forgot-password"
+            (click)="navigateToForgotPassword()"
             class="text-sm text-[var(--color-primary)]"
             >Esqueceu a senha?</a
           >
@@ -77,9 +72,11 @@
     <!-- Links para "Esqueceu a Senha" e "Não Possui Conta" -->
     <div class="flex justify-center mt-5">
       <span class="text-sm text-gray-700">Não possui conta?</span>
-      <a routerLink="/cadastro" class="text-sm text-[var(--color-primary)] ml-1"
+      <a
+        (click)="navigateToRegister()"
+        class="text-sm text-[var(--color-primary)] ml-1"
         >Cadastre-se</a
       >
     </div>
-  </div>
+  </app-card>
 </div>

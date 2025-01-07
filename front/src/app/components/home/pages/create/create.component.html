@@ -1,0 +1,225 @@
+<div class="header-container">
+  <app-header></app-header>
+</div>
+
+<div class="container">
+  <h1>Cadastrar Anúncio</h1>
+
+  <form [formGroup]="anuncioForm" (ngSubmit)="onSubmit()">
+    <div class="form-separator"></div>
+    <!-- DADOS DO IMÓVEL -->
+    <fieldset>
+      <legend>Dados do Imóvel</legend>
+
+      <div class="flex flex-col md:flex-row gap-2">
+        <div class="form-group w-full md:w-1/2">
+          <label for="propertyType">Selecione o tipo de Imóvel</label>
+          <select
+            id="propertyType"
+            formControlName="propertyType"
+            class="h-full"
+            required
+          >
+            <option value="">Selecione</option>
+            <option value="Casa">Casa</option>
+            <option value="Apartamento">Apartamento</option>
+            <option value="Comercial">Comercial</option>
+            <!-- Adicione outras opções conforme necessário -->
+          </select>
+        </div>
+
+        <div class="form-group w-full md:w-1/2">
+          <label for="numberOfBedrooms">N° de Quartos</label>
+          <input
+            type="number"
+            id="numberOfBedrooms"
+            formControlName="numberOfBedrooms"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-2">
+        <div class="form-group w-full md:w-1/2">
+          <label for="numberOfBathrooms">N° de Banheiros</label>
+          <input
+            type="number"
+            id="numberOfBathrooms"
+            formControlName="numberOfBathrooms"
+            required
+          />
+        </div>
+
+        <div class="form-group w-full md:w-1/2">
+          <label for="parkingSpaces">N° de vagas de Garagem</label>
+          <input
+            type="number"
+            id="parkingSpaces"
+            formControlName="parkingSpaces"
+          />
+        </div>
+      </div>
+
+      <div class="form-group w-full md:w-1/2">
+        <label for="images">Adicionar Imagens</label>
+        <div
+          class="upload-area"
+          (drop)="onDrop($event)"
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+        >
+          <div class="upload-content">
+            <div class="upload-icon">
+              <img src="../../../../assets/images/upload-icon.png" />
+            </div>
+            <p style="font-weight: bold">
+              Arraste e solte arquivos aqui ou
+              <span class="upload-link" (click)="fileInput.click()"
+                >Procure uma Mídia</span
+              >
+            </p>
+          </div>
+
+          <input
+            type="file"
+            #fileInput
+            (change)="onFileSelected($event)"
+            multiple
+            hidden
+          />
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-separator"></div>
+
+    <!-- DADOS DO ENDEREÇO -->
+    <div formGroupName="address">
+      <fieldset>
+        <legend>Dados do Endereço</legend>
+        <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2">
+            <label for="cep">CEP</label>
+            <input
+              type="text"
+              id="cep"
+              formControlName="postalCode"
+              required
+              mask="000000-000"
+              class="input-cep"
+            />
+          </div>
+
+          <div class="form-group w-full md:w-1/2">
+            <label for="rua">Endereço</label>
+            <input type="text" id="rua" formControlName="street" required />
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2">
+            <label for="bairro">Bairro</label>
+            <input
+              type="text"
+              id="bairro"
+              formControlName="neighborhood"
+              required
+            />
+          </div>
+
+          <div class="form-group w-full md:w-1/2">
+            <label for="numero">Número</label>
+            <input type="text" id="numero" formControlName="number" required />
+          </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2">
+            <label for="cidade">Cidade</label>
+            <input type="text" id="cidade" formControlName="city" required />
+          </div>
+
+          <div class="form-group w-full md:w-1/2">
+            <label for="estado">Estado</label>
+            <input type="text" id="estado" formControlName="state" required />
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="form-separator"></div>
+
+    <!-- DADOS DO ANÚNCIO -->
+    <fieldset>
+      <legend>Dados do Anúncio</legend>
+      <div class="flex flex-col md:flex-row gap-2">
+        <div class="form-group w-full md:w-1/2">
+          <label for="titulo">Título do Anúncio</label>
+          <input type="text" id="titulo" formControlName="titulo" required />
+        </div>
+
+        <div class="form-group w-full md:w-1/2">
+          <label for="adType">Selecione o Tipo de Anúncio</label>
+          <select id="adType" formControlName="adType" class="h-full" required>
+            <option value="">Selecione</option>
+            <option value="Aluguel">Aluguel</option>
+            <option value="Venda">Venda</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row gap-2">
+        <div class="form-group w-full md:w-1/2">
+          <label for="price">Valor de Aluguel/Venda</label>
+          <input
+            type="text"
+            id="price"
+            formControlName="price"
+            mask="separator.2"
+            prefix="R$ "
+          />
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-2">
+          <div class="form-group w-full md:w-1/2">
+            <label for="condoFee">Valor de Condomínio</label>
+            <input
+              type="text"
+              id="condoFee"
+              formControlName="condoFee"
+              mask="separator.2"
+              prefix="R$ "
+            />
+          </div>
+        </div>
+
+        <div class="form-group w-full md:w-1/2">
+          <label for="propertyTax">Valor do IPTU</label>
+          <input
+            type="text"
+            id="propertyTax"
+            formControlName="propertyTax"
+            mask="separator.2"
+            prefix="R$ "
+          />
+        </div>
+
+        <div class="form-group w-full">
+          <label for="description">Descrição do Anúncio</label>
+          <textarea
+            type="text"
+            id="description"
+            formControlName="description"
+            class="min-h-[6em] max-h-[8em]"
+          ></textarea>
+        </div>
+      </div>
+    </fieldset>
+
+    <div class="form-group w-full">
+      <button type="submit" class="btn-submit">Publicar Anúncio</button>
+    </div>
+  </form>
+</div>
+
+<app-footer></app-footer>

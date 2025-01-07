@@ -1,8 +1,69 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { ApiService } from '../../core/services/api.service';
+import { HttpClientModule } from '@angular/common/http';
+
+export class ListingFormFactory {
+  static createForm(fb: FormBuilder): FormGroup {
+    return fb.group({
+      userCpfCnpj: ['123456789'],
+      propertyType: ['', Validators.required],
+      numberOfBedrooms: [null, Validators.required],
+      numberOfBathrooms: [null, Validators.required],
+      parkingSpaces: [null],
+      address: fb.group({
+        postalCode: ['', Validators.required],
+        street: ['', Validators.required],
+        neighborhood: ['', Validators.required],
+        number: ['', Validators.required],
+        city: ['', Validators.required],
+        state: ['', Validators.required],
+        logradouro: [''],
+      }),
+      titulo: ['', Validators.required],
+      adType: ['', Validators.required],
+      price: [null],
+      condoFee: [null],
+      propertyTax: [null],
+      description: ['', Validators.required],
+    });
+  }
+}
+
+export class ListingAdapter {
+  static adapt(apiResponse: any): any {
+    return {
+      userCpfCnpj: apiResponse.userCpfCnpj || '123456789',
+      propertyType: apiResponse.propertyType,
+      numberOfBedrooms: apiResponse.numberOfBedrooms,
+      numberOfBathrooms: apiResponse.numberOfBathrooms,
+      parkingSpaces: apiResponse.parkingSpaces,
+      address: {
+        postalCode: apiResponse.address.postalCode,
+        street: apiResponse.address.street,
+        neighborhood: apiResponse.address.neighborhood,
+        number: apiResponse.address.number,
+        city: apiResponse.address.city,
+        state: apiResponse.address.state,
+        logradouro: apiResponse.address.logradouro,
+      },
+      titulo: apiResponse.titulo,
+      adType: apiResponse.adType,
+      price: apiResponse.price,
+      condoFee: apiResponse.condoFee,
+      propertyTax: apiResponse.propertyTax,
+      description: apiResponse.description,
+    };
+  }
+}
 
 @Component({
   selector: 'app-listing',
@@ -13,59 +74,49 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
     HeaderComponent,
     FooterComponent,
     NgxMaskDirective,
+    HttpClientModule,
   ],
-  providers: [provideNgxMask()],
+  providers: [provideNgxMask(), ApiService],
 })
 export class ListingComponent implements OnInit {
   anuncioForm!: FormGroup;
   imagensSelecionadas: File[] = [];
-
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
-    // Inicializando o FormGroup
-    this.anuncioForm = this.fb.group({
-      // Dados do Imóvel
-      tipoImovel: ['', Validators.required],
-      quantidadeQuartos: [null, Validators.required],
-      quantidadeBanheiros: [null, Validators.required],
-      vagasGaragem: [null],
-
-      // Endereço
-      cep: ['', Validators.required],
-      rua: ['', Validators.required],
-      bairro: ['', Validators.required],
-      numero: ['', Validators.required],
-      cidade: ['', Validators.required],
-      estado: ['', Validators.required],
-      logradouro: [''],
-
-      // Dados do Anúncio
-      titulo: ['', Validators.required],
-      tipoAnuncio: ['', Validators.required],
-      valorAluguel: [null],
-      valorCondominio: [null],
-      valorIPTU: [null],
-    });
-  }
-
-  // Método chamado quando o usuário seleciona arquivos
   isDragging = false;
   selectedFiles: File[] = [];
 
-  // Método chamado ao arrastar algo para o campo
+  constructor(private fb: FormBuilder, private apiService: ApiService) {}
+
+  ngOnInit(): void {
+
+    this.anuncioForm = ListingFormFactory.createForm(this.fb);
+
+
+    this.apiService.get('listing/123456789').subscribe(
+      (response) => {
+        const adaptedData = ListingAdapter.adapt(response);
+        this.anuncioForm.patchValue(adaptedData);
+      },
+      (error) => {
+        console.error('Erro ao buscar dados do anúncio:', error);
+      }
+    );
+
+
+    this.anuncioForm.valueChanges.subscribe((values) => {
+      console.log('Alterações no formulário detectadas:', values);
+    });
+  }
+
   onDragOver(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = true;
   }
 
-  // Método chamado ao sair do campo de upload
   onDragLeave(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = false;
   }
 
-  // Método chamado ao soltar arquivos no campo
   onDrop(event: DragEvent): void {
     event.preventDefault();
     this.isDragging = false;
@@ -80,7 +131,6 @@ export class ListingComponent implements OnInit {
     }
   }
 
-  // Método chamado ao selecionar arquivos via input
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -91,19 +141,20 @@ export class ListingComponent implements OnInit {
     }
   }
 
-  // Método que envia o formulário
   onSubmit(): void {
+    console.log(this.anuncioForm);
     if (this.anuncioForm.valid) {
-      // Aqui você pode enviar os dados para uma API, por exemplo
       const dadosAnuncio = this.anuncioForm.value;
-      console.log('Formulário válido! Dados: ', dadosAnuncio);
+      console.log('Formulário válido! Dados:', dadosAnuncio);
 
-      // As imagens selecionadas ficam em "this.imagensSelecionadas"
-      console.log('Imagens:', this.imagensSelecionadas);
-
-      // Exemplo de requisição (usando um service fictício):
-      // this.meuService.cadastrarAnuncio(dadosAnuncio, this.imagensSelecionadas)
-      //   .subscribe(() => alert('Anúncio cadastrado com sucesso!'));
+      this.apiService.post('property', dadosAnuncio).subscribe(
+        (response) => {
+          console.log('Resposta da API:', response);
+        },
+        (error) => {
+          console.error('Erro ao enviar dados para a API:', error);
+        }
+      );
     } else {
       console.log('Formulário inválido, verifique os campos obrigatórios.');
     }

@@ -10,7 +10,10 @@
       </p>
 
       <!-- Mensagem de sucesso -->
-      <p *ngIf="successMessage" class="text-center text-green-600 font-bold mb-3">
+      <p
+        *ngIf="successMessage"
+        class="text-center text-green-600 font-bold mb-3"
+      >
         {{ successMessage }}
       </p>
 
@@ -20,7 +23,7 @@
       </p>
 
       <!-- Formulário -->
-      <form (ngSubmit) = "onSubmit()" #formDirective="ngForm">
+      <form (ngSubmit)="onSubmit()" #formDirective="ngForm">
         <!-- Input de Nome -->
         <div class="w-full max-w-sm min-w-[200px] mb-5">
           <div class="relative">
@@ -138,7 +141,11 @@
       <!-- Links para "Esqueceu a Senha" e "Não Possui Conta" -->
       <div class="flex justify-center mt-5">
         <span class="text-sm text-gray-700">Já tem conta?</span>
-        <a routerLink="/login" class="text-sm text-[var(--color-primary)] ml-1">Entre</a>
+        <a
+          (click)="navigateToLogin()"
+          class="text-sm text-[var(--color-primary)] ml-1"
+          >Entre</a
+        >
       </div>
     </div>
   </app-card>

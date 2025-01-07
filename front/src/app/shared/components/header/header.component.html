@@ -1,7 +1,10 @@
 <header class="top-menu">
-  <div class="logo-container">
+  <div class="logo-container" (click)="navigateToHome()">
     <!-- Troque pelo caminho da sua logo -->
-    <img src="../../../../assets/images/hosthub-header-logo.png" alt="Logo Host Hub" />
+    <img
+      src="../../../../assets/images/hosthub-header-logo.png"
+      alt="Logo Host Hub"
+    />
     <!-- Ou use apenas texto, se preferir -->
     <!-- <h2>Host Hub</h2> -->
   </div>
@@ -17,7 +20,9 @@
 
   <div class="menu-actions">
     <!-- Exemplo de botões -->
-    <button routerLink="/login" class="btn-login">Minha Conta</button>
-    <button routerLink="/cadastrar-anuncio" class="btn-anunciar">Novo Anúncio</button>
+    <button routerLink="/profile" class="btn-login">Minha Conta</button>
+    <button (click)="navigateToCreateAnuncio()" class="btn-anunciar">
+      Novo Anúncio
+    </button>
   </div>
 </header>
