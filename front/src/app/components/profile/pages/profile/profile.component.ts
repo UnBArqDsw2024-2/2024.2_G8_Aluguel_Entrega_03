@@ -7,10 +7,11 @@ import {
 } from '@angular/forms';
 import { ApiService } from '../../../../core/services/api.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedComponents } from '../../../../shared/shared.components';
 
 @Component({
   selector: 'app-profile',
-  imports: [ReactiveFormsModule, HttpClientModule],
+  imports: [ReactiveFormsModule, HttpClientModule, SharedComponents],
   providers: [ApiService],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -23,17 +24,17 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.apiService.get('users/123456789').subscribe(
       (response) => {
-      this.profileForm.patchValue({
-        name: response.name,
-        email: response.email,
-        password: '', // Password should not be pre-filled for security reasons
-        confirmPassword: '', // Confirm password should also be empty
-        site: response.site,
-        phone: response.phone,
-      });
+        this.profileForm.patchValue({
+          name: response.name,
+          email: response.email,
+          password: '', // Password should not be pre-filled for security reasons
+          confirmPassword: '', // Confirm password should also be empty
+          site: response.site,
+          phone: response.phone,
+        });
       },
       (error) => {
-      console.error(error);
+        console.error(error);
       }
     );
     this.profileForm = this.fb.group({

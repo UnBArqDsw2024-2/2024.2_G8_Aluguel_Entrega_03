@@ -1,19 +1,8 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
   <!-- Card de Login -->
-  <div class="bg-white shadow-lg rounded-lg py-8 px-16 w-full max-w-md">
+  <app-card class="px-16">
     <!-- Logo e Título -->
-    <div class="flex flex-row items-center justify-center gap-3 mb-6">
-      <img
-        src="/icons/hosthub_logo.png"
-        alt="Logo do Sistema"
-        class="w-16 h-16"
-      />
-      <h1
-        class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]"
-      >
-        HostHub
-      </h1>
-    </div>
+    <app-logo-name></app-logo-name>
 
     <p class="text-gray-600 text-center text-l font-bold mb-5">
       Entre em sua conta
@@ -89,5 +78,5 @@
         >Cadastre-se</a
       >
     </div>
-  </div>
+  </app-card>
 </div>

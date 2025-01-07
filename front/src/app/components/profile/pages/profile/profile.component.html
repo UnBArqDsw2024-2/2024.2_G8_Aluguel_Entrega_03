@@ -1,104 +1,150 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <!-- Card de Perfil -->
-    <div class="bg-white shadow-lg rounded-lg py-8 px-16 w-full max-w-4xl">
-        <!-- Logo e Título -->
-        <div class="flex flex-row items-center justify-center gap-3 mb-8">
-            <img src="/icons/hosthub_logo.png" alt="Logo do Sistema" class="w-16 h-16" />
-            <h1
-                class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]">
-                HostHub
-            </h1>
+  <!-- Card de Perfil -->
+  <div class="bg-white shadow-lg rounded-lg py-8 px-16 w-full max-w-4xl">
+    <!-- Logo e Título -->
+    <app-logo-name></app-logo-name>
+
+    <p class="text-gray-600 text-center text-l font-bold mb-10">
+      Editar Perfil
+    </p>
+
+    <!-- Formulário com Grid de 2 Colunas -->
+    <form [formGroup]="profileForm">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Coluna 1 -->
+        <div class="space-y-6">
+          <!-- Nome -->
+          <div class="relative">
+            <input
+              id="name"
+              name="name"
+              type="text"
+              formControlName="name"
+              class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
+              placeholder=" "
+              required
+            />
+            <label
+              for="name"
+              class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5"
+            >
+              Nome
+            </label>
+          </div>
+
+          <!-- E-mail -->
+          <div class="relative">
+            <input
+              id="email"
+              name="email"
+              type="email"
+              formControlName="email"
+              class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
+              placeholder=" "
+              required
+            />
+            <label
+              for="email"
+              class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5"
+            >
+              E-mail
+            </label>
+          </div>
+
+          <!-- Telefone -->
+          <div class="relative">
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              formControlName="phone"
+              class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
+              placeholder=" "
+            />
+            <label
+              for="phone"
+              class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5"
+            >
+              Telefone
+            </label>
+          </div>
+
+          <!-- Site -->
+          <div class="relative">
+            <input
+              id="site"
+              name="site"
+              type="text"
+              formControlName="site"
+              class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
+              placeholder=" "
+            />
+            <label
+              for="site"
+              class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5"
+            >
+              Site
+            </label>
+          </div>
         </div>
 
-        <p class="text-gray-600 text-center text-l font-bold mb-10">Editar Perfil</p>
+        <!-- Coluna 2 -->
+        <div class="space-y-6">
+          <!-- Senha -->
+          <div class="relative">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              formControlName="password"
+              class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
+              placeholder=" "
+            />
+            <label
+              for="password"
+              class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5"
+            >
+              Senha
+            </label>
+          </div>
+          <p class="text-xs text-gray-400">
+            *Deixe em branco se não quiser alterar
+          </p>
 
-        <!-- Formulário com Grid de 2 Colunas -->
-        <form [formGroup]="profileForm">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Coluna 1 -->
-                <div class="space-y-6">
-                    <!-- Nome -->
-                    <div class="relative">
-                        <input id="name" name="name" type="text" formControlName="name"
-                            class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
-                            placeholder=" " required />
-                        <label for="name"
-                            class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5">
-                            Nome
-                        </label>
-                    </div>
+          <!-- Confirmar Senha -->
+          <div class="relative">
+            <input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="password"
+              formControlName="confirmPassword"
+              class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
+              placeholder=" "
+            />
+            <label
+              for="confirmPassword"
+              class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5"
+            >
+              Confirmar Senha
+            </label>
+          </div>
+          <p class="text-xs text-gray-400">
+            *Confirme a senha se for alterá-la
+          </p>
+        </div>
+      </div>
 
-                    <!-- E-mail -->
-                    <div class="relative">
-                        <input id="email" name="email" type="email" formControlName="email"
-                            class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
-                            placeholder=" " required />
-                        <label for="email"
-                            class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5">
-                            E-mail
-                        </label>
-                    </div>
-
-                    <!-- Telefone -->
-                    <div class="relative">
-                        <input id="phone" name="phone" type="tel" formControlName="phone"
-                            class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
-                            placeholder=" " />
-                        <label for="phone"
-                            class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5">
-                            Telefone
-                        </label>
-                    </div>
-
-                    <!-- Site -->
-                    <div class="relative">
-                        <input id="site" name="site" type="text" formControlName="site"
-                            class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
-                            placeholder=" " />
-                        <label for="site"
-                            class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5">
-                            Site
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Coluna 2 -->
-                <div class="space-y-6">
-                    <!-- Senha -->
-                    <div class="relative">
-                        <input id="password" name="password" type="password" formControlName="password"
-                            class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
-                            placeholder=" " />
-                        <label for="password"
-                            class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5">
-                            Senha
-                        </label>
-                    </div>
-                    <p class="text-xs text-gray-400">*Deixe em branco se não quiser alterar</p>
-
-                    <!-- Confirmar Senha -->
-                    <div class="relative">
-                        <input id="confirmPassword" name="confirmPassword" type="password" formControlName="confirmPassword"
-                            class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
-                            placeholder=" " />
-                        <label for="confirmPassword"
-                            class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5">
-                            Confirmar Senha
-                        </label>
-                    </div>
-                    <p class="text-xs text-gray-400">*Confirme a senha se for alterá-la</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Botão de Salvar -->
-                <div class="mt-10 md:col-start-2 flex justify-end">
-                    <button type="submit"
-                        class="w-full md:max-w-[200px] bg-[var(--advanced-light-orange)] text-white py-2 rounded-md hover:bg-[var(--color-primary)] transition duration-300">
-                        Salvar Alterações
-                    </button>
-                </div>
-            </div>
-        </form>
-    </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Botão de Salvar -->
+        <div class="mt-10 md:col-start-2 flex justify-end">
+          <button
+            type="submit"
+            class="w-full md:max-w-[200px] bg-[var(--advanced-light-orange)] text-white py-2 rounded-md hover:bg-[var(--color-primary)] transition duration-300"
+          >
+            Salvar Alterações
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
