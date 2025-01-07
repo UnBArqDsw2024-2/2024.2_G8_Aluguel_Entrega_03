@@ -8,9 +8,8 @@ import {
 import { HeaderComponent } from '../../shared/components/header/header.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
-import { Router } from '@angular/router';
+import { ApiService } from '../../core/services/api.service';
 import { HttpClientModule } from '@angular/common/http';
-import { ApiService } from '../../../../core/services/api.service';
 
 export class ListingFormFactory {
   static createForm(fb: FormBuilder): FormGroup {
@@ -67,9 +66,9 @@ export class ListingAdapter {
 }
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss'],
+  selector: 'app-listing',
+  templateUrl: './listing.component.html',
+  styleUrls: ['./listing.component.scss'],
   imports: [
     ReactiveFormsModule,
     HeaderComponent,
@@ -79,17 +78,13 @@ export class ListingAdapter {
   ],
   providers: [provideNgxMask(), ApiService],
 })
-export class CreateComponent implements OnInit {
+export class ListingComponent implements OnInit {
   anuncioForm!: FormGroup;
   imagensSelecionadas: File[] = [];
   isDragging = false;
   selectedFiles: File[] = [];
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private apiService: ApiService
-  ) {}
+  constructor(private fb: FormBuilder, private apiService: ApiService) {}
 
   ngOnInit(): void {
 
