@@ -46,9 +46,6 @@ export class PropertyService {
       .withCreatedAt(new Date())
       .withStatus(property.status)
       .withAddressPk(property.addressPk)
-      .withUser(property.user)
-      .withAddress(property.address)
-      .withReviews(property.reviews)
       .withAdType(property.adType)
       .withCondoFee(property.condoFee)
       .withPropertyTax(property.propertyTax)
@@ -60,9 +57,6 @@ export class PropertyService {
       .withPropertyType(property.propertyType)
       .withNumberOfBathrooms(property.numberOfBathrooms)
       .withUserCpfCnpj(property.userCpfCnpj)
-      .withAddressPk(property.address.postalCode)
-      .withUser(property.user)
-      .withAddress(property.address)
       .build();
 
     return response;

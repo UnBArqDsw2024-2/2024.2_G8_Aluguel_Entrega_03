@@ -13,13 +13,13 @@
         <p class="text-gray-600 text-center text-l font-bold mb-10">Editar Perfil</p>
 
         <!-- Formulário com Grid de 2 Colunas -->
-        <form>
+        <form [formGroup]="profileForm">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Coluna 1 -->
                 <div class="space-y-6">
                     <!-- Nome -->
                     <div class="relative">
-                        <input id="name" name="name" type="text"
+                        <input id="name" name="name" type="text" formControlName="name"
                             class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
                             placeholder=" " required />
                         <label for="name"
@@ -30,7 +30,7 @@
 
                     <!-- E-mail -->
                     <div class="relative">
-                        <input id="email" name="email" type="email"
+                        <input id="email" name="email" type="email" formControlName="email"
                             class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
                             placeholder=" " required />
                         <label for="email"
@@ -41,10 +41,10 @@
 
                     <!-- Telefone -->
                     <div class="relative">
-                        <input id="telephone" name="telephone" type="tel"
+                        <input id="phone" name="phone" type="tel" formControlName="phone"
                             class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
                             placeholder=" " />
-                        <label for="telephone"
+                        <label for="phone"
                             class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5">
                             Telefone
                         </label>
@@ -52,7 +52,7 @@
 
                     <!-- Site -->
                     <div class="relative">
-                        <input id="site" name="site" type="text"
+                        <input id="site" name="site" type="text" formControlName="site"
                             class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
                             placeholder=" " />
                         <label for="site"
@@ -66,7 +66,7 @@
                 <div class="space-y-6">
                     <!-- Senha -->
                     <div class="relative">
-                        <input id="password" name="password" type="password"
+                        <input id="password" name="password" type="password" formControlName="password"
                             class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
                             placeholder=" " />
                         <label for="password"
@@ -78,10 +78,10 @@
 
                     <!-- Confirmar Senha -->
                     <div class="relative">
-                        <input id="confirm_password" name="confirm_password" type="password"
+                        <input id="confirmPassword" name="confirmPassword" type="password" formControlName="confirmPassword"
                             class="block peer w-full bg-transparent placeholder:text-transparent text-slate-700 text-sm border border-slate-200 rounded-md px-3 py-3 hover:border-slate-300 shadow-sm focus:ring focus:ring-gray-300 focus:outline-none"
                             placeholder=" " />
-                        <label for="confirm_password"
+                        <label for="confirmPassword"
                             class="absolute text-sm text-slate-400 left-3 top-3 duration-100 transform -translate-y-4 scale-75 bg-white px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:scale-75 peer-focus:top-2 peer-focus:-translate-y-5">
                             Confirmar Senha
                         </label>
@@ -99,8 +99,6 @@
                     </button>
                 </div>
             </div>
-
-
         </form>
     </div>
 </div>
