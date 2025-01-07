@@ -2,7 +2,12 @@
 module.exports = {
   content: ["./src/**/*.{html,ts}"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        // Defini a Lato como padrão, de acordo com o Design System
+        sans: ['Lato', 'sans-serif'],
+      }
+    },
   },
   plugins: [],
 };
