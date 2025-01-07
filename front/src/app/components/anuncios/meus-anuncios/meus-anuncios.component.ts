@@ -34,10 +34,4 @@ export class MeusAnunciosComponent implements OnInit {
     this.anunciosFacade.carregarAnuncios();
     this.anuncios$ = this.anunciosFacade.anuncios$;
   }
-
-  onNovoAnuncio() {
-    // Navegar para a página de criação de novo anúncio, se necessário
-    // Exemplo: this.router.navigate(['/novo-anuncio']);
-    alert('Funcionalidade de criação não implementada.');
-  }
 }

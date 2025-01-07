@@ -6,13 +6,6 @@
     <h2 class="text-2xl text-gray-600">Meus Anúncios</h2>
   </div>
 
-  <!-- Novo Anúncio Button -->
-  <div class="flex justify-end mb-6">
-    <button (click)="onNovoAnuncio()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-      Novo Anúncio
-    </button>
-  </div>
-
   <!-- Anúncios Grid -->
   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
     <app-anuncio-item *ngFor="let anuncio of anuncios$ | async" [anuncio]="anuncio"></app-anuncio-item>
